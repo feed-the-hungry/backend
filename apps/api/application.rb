@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Api
   class Application < Hanami::Application
     configure do
@@ -15,9 +17,7 @@ module Api
       #
       # When you add new directories, remember to add them here.
       #
-      load_paths << [
-        'controllers',
-      ]
+      load_paths << ['controllers']
 
       # Handle exceptions with HTTP statuses (true) or don't catch them (false).
       # Defaults to true.
@@ -166,7 +166,7 @@ module Api
       #
       #  * https://developer.mozilla.org/en-US/docs/Web/Security/CSP/CSP_policy_directives
       #
-      security.content_security_policy %{
+      security.content_security_policy %{(
         form-action 'self';
         frame-ancestors 'self';
         base-uri 'self';
@@ -181,7 +181,7 @@ module Api
         child-src 'self';
         frame-src 'self';
         media-src 'self'
-      }
+      )}
 
       ##
       # FRAMEWORKS

@@ -1,19 +1,18 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
-gem 'rake'
+gem 'graphql'
 gem 'hanami',       '~> 1.3'
 gem 'hanami-model', '~> 1.3'
-gem 'puma'
-gem 'graphql'
-
 gem 'pg'
+gem 'puma'
+gem 'rake'
 
 group :development do
-  # Code reloading
-  # See: https://guides.hanamirb.org/projects/code-reloading
-  gem 'shotgun', platforms: :ruby
   gem 'hanami-webconsole'
   gem 'rubocop', require: false
+  gem 'shotgun', platforms: :ruby
 end
 
 group :test, :development do
