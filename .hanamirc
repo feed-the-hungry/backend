@@ -1,0 +1,3 @@
+project=rss_hub
+test=rspec
+template=erb

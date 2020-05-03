@@ -1,0 +1,2 @@
+module RssHub
+end
