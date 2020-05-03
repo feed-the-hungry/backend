@@ -2,7 +2,11 @@
 
 require 'simplecov'
 
-SimpleCov.start
+SimpleCov.start do
+  add_filter '/spec/'
+  add_filter '/config/'
+  add_filter '/db/'
+end
 
 if ENV['CI'] == 'true'
   require 'codecov'
