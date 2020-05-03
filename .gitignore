@@ -2,3 +2,5 @@
 /tmp
 .env.local
 .env.*.local
+coverage
+spec/*.txt

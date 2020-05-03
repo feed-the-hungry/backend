@@ -1,6 +1,7 @@
 # Rss Hub
 
 [![Build Status](https://travis-ci.org/brunoarueira/rss-hub-backend.svg?branch=master)](https://travis-ci.org/brunoarueira/rss-hub-backend)
+[![codecov](https://codecov.io/gh/brunoarueira/rss-hub-backend/branch/master/graph/badge.svg)](https://codecov.io/gh/brunoarueira/rss-hub-backend)
 
 Welcome to your new Hanami project!
 
