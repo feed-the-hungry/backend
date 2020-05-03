@@ -6,7 +6,7 @@ before_script:
 env:
   - DATABASE_URL=postgresql://localhost/rss_hub_test
 
-script: 'bundle exec rake spec --trace'
+script: 'bundle exec rubocop && bundle exec rake spec --trace'
 
 rvm:
   - 2.6
