@@ -1,0 +1,15 @@
+language: ruby
+sudo: false
+cache: bundler
+before_script:
+  - psql -c 'create database rss_hub_test;' -U postgres
+env:
+  - DATABASE_URL=postgresql://localhost/rss_hub_test
+
+script: 'bundle exec rake spec --trace'
+
+rvm:
+  - 2.6
+
+services:
+  - postgresql
