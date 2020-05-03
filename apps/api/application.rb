@@ -1,6 +1,3 @@
-require 'hanami/helpers'
-require 'hanami/assets'
-
 module Api
   class Application < Hanami::Application
     configure do
@@ -20,7 +17,6 @@ module Api
       #
       load_paths << [
         'controllers',
-        'views'
       ]
 
       # Handle exceptions with HTTP statuses (true) or don't catch them (false).
@@ -96,56 +92,6 @@ module Api
       # Argument: A symbol representation of a mime type, defaults to :html
       #
       # default_response_format :html
-
-      ##
-      # TEMPLATES
-      #
-
-      # The layout to be used by all views
-      #
-      layout :application # It will load Api::Views::ApplicationLayout
-
-      # The relative path to templates
-      #
-      templates 'templates'
-
-      ##
-      # ASSETS
-      #
-      assets do
-        # JavaScript compressor
-        #
-        # Supported engines:
-        #
-        #   * :builtin
-        #   * :uglifier
-        #   * :yui
-        #   * :closure
-        #
-        # See: https://guides.hanamirb.org/assets/compressors
-        #
-        # In order to skip JavaScript compression comment the following line
-        javascript_compressor :builtin
-
-        # Stylesheet compressor
-        #
-        # Supported engines:
-        #
-        #   * :builtin
-        #   * :yui
-        #   * :sass
-        #
-        # See: https://guides.hanamirb.org/assets/compressors
-        #
-        # In order to skip stylesheet compression comment the following line
-        stylesheet_compressor :builtin
-
-        # Specify sources for assets
-        #
-        sources << [
-          'assets'
-        ]
-      end
 
       ##
       # SECURITY
@@ -249,15 +195,6 @@ module Api
         # include MyAuthentication # included in all the actions
         # before :authenticate!    # run an authentication before callback
       end
-
-      # Configure the code that will yield each time Api::View is included
-      # This is useful for sharing common functionality
-      #
-      # See: http://www.rubydoc.info/gems/hanami-view#Configuration
-      view.prepare do
-        include Hanami::Helpers
-        include Api::Assets::Helpers
-      end
     end
 
     ##
@@ -283,31 +220,6 @@ module Api
       # scheme 'https'
       # host   'example.org'
       # port   443
-
-      assets do
-        # Don't compile static assets in production mode (eg. Sass, ES6)
-        #
-        # See: http://www.rubydoc.info/gems/hanami-assets#Configuration
-        compile false
-
-        # Use fingerprint file name for asset paths
-        #
-        # See: https://guides.hanamirb.org/assets/overview
-        fingerprint true
-
-        # Content Delivery Network (CDN)
-        #
-        # See: https://guides.hanamirb.org/assets/content-delivery-network
-        #
-        # scheme 'https'
-        # host   'cdn.example.org'
-        # port   443
-
-        # Subresource Integrity
-        #
-        # See: https://guides.hanamirb.org/assets/content-delivery-network/#subresource-integrity
-        subresource_integrity :sha256
-      end
     end
   end
 end
