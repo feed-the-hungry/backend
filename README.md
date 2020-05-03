@@ -1,5 +1,7 @@
 # Rss Hub
 
+[![Build Status](https://travis-ci.org/brunoarueira/rss-hub-backend.svg?branch=master)](https://travis-ci.org/brunoarueira/rss-hub-backend)
+
 Welcome to your new Hanami project!
 
 ## Setup
