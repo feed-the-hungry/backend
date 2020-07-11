@@ -3,7 +3,7 @@
 require 'bundler/setup'
 require 'hanami/setup'
 require 'hanami/model'
-require_relative '../lib/rss_hub'
+require_relative '../lib/feed_the_hungry'
 require_relative '../apps/api/application'
 
 Hanami.configure do
@@ -15,9 +15,9 @@ Hanami.configure do
     # Available options:
     #
     #  * SQL adapter
-    #    adapter :sql, 'sqlite://db/rss_hub_development.sqlite3'
-    #    adapter :sql, 'postgresql://localhost/rss_hub_development'
-    #    adapter :sql, 'mysql://localhost/rss_hub_development'
+    #    adapter :sql, 'sqlite://db/feed_the_hungry_development.sqlite3'
+    #    adapter :sql, 'postgresql://localhost/feed_the_hungry_development'
+    #    adapter :sql, 'mysql://localhost/feed_the_hungry_development'
     #
     adapter :sql, ENV.fetch('DATABASE_URL')
 
@@ -29,7 +29,7 @@ Hanami.configure do
   end
 
   mailer do
-    root 'lib/rss_hub/mailers'
+    root 'lib/feed_the_hungry/mailers'
 
     # See https://guides.hanamirb.org/mailers/delivery
     delivery :test
