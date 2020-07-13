@@ -3,3 +3,5 @@ AllCops:
     2.6
 Documentation:
   Enabled: false
+Metrics/BlockLength:
+  Enabled: false
