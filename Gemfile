@@ -11,6 +11,7 @@ gem 'rake'
 
 group :development do
   gem 'hanami-webconsole'
+  gem 'lefthook'
   gem 'rubocop', require: false
   gem 'shotgun', platforms: :ruby
 end

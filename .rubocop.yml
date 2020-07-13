@@ -1,5 +1,9 @@
 AllCops:
   TargetRubyVersion:
     2.6
-Documentation:
+Style/Documentation:
+  Enabled: false
+Metrics/BlockLength:
+  Enabled: false
+Layout/SpaceAroundMethodCallOperator:
   Enabled: false
