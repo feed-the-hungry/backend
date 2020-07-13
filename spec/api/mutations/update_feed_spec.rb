@@ -5,7 +5,9 @@ RSpec.describe Mutations::UpdateFeed do
 
   let(:repository) { FeedRepository.new }
 
-  let!(:feed) { repository.create(title: 'Blog', url: 'https://blog.com/feed.xml') }
+  let!(:feed) do
+    repository.create(title: 'Blog', url: 'https://blog.com/feed.xml')
+  end
 
   let(:query) do
     <<-GRAPHQL

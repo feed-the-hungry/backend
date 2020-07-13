@@ -10,7 +10,9 @@ RSpec.describe Api::Controllers::Graphql::Execute, type: :action do
     ]
   end
 
-  let!(:feed) { FeedRepository.new.create(title: 'My feed', url: 'https://myfeed.com/feed.xml') }
+  let!(:feed) do
+    FeedRepository.new.create(title: 'My feed', url: 'https://myfeed.com/feed.xml')
+  end
 
   it 'is successful' do
     response = action.call(params)

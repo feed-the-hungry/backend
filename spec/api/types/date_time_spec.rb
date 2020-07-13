@@ -41,7 +41,9 @@ RSpec.describe Types::DateTime do
     it 'passing a DateTime value' do
       datetime = DateTime.parse('2020-01-01T03:00:00Z')
 
-      expect(described_class.coerce_result(datetime, nil)).to eq '2020-01-01T03:00:00Z'
+      expect(described_class.coerce_result(datetime, nil)).to(
+        eq '2020-01-01T03:00:00Z'
+      )
     end
   end
 end

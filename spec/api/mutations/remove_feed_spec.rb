@@ -14,7 +14,9 @@ RSpec.describe Mutations::RemoveFeed do
   end
 
   context 'valid' do
-    let!(:feed) { repository.create(title: 'Blog', url: 'https://blog.com/feed.xml') }
+    let!(:feed) do
+      repository.create(title: 'Blog', url: 'https://blog.com/feed.xml')
+    end
 
     let(:variables) do
       {
