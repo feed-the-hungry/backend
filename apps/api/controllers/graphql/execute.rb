@@ -8,12 +8,14 @@ module Api
       class Execute
         include Api::Action
 
+        accept :json
+
         def call(params)
           query_variables = params[:variables] || {}
 
           result = Schema.execute(params[:query], variables: query_variables)
 
-          self.body = JSON.generate(result)
+          status 200, JSON.generate(result)
         end
       end
     end
