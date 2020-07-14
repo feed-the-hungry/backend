@@ -6,7 +6,7 @@ RSpec.describe Mutations::UpdateFeed do
   let(:repository) { FeedRepository.new }
 
   let!(:feed) do
-    repository.create(title: 'Blog', url: 'https://blog.com/feed.xml')
+    repository.create(title: 'Blog', kind: FeedKind::TEXT, url: 'https://blog.com/feed.xml')
   end
 
   let(:query) do
@@ -15,6 +15,7 @@ RSpec.describe Mutations::UpdateFeed do
         updateFeed(id: $id, input: $input) {
           feed {
             title
+            kind
             url
           }
         }
@@ -33,6 +34,7 @@ RSpec.describe Mutations::UpdateFeed do
     let(:input) do
       {
         title: 'My feed',
+        kind: FeedKind::TEXT.upcase,
         url: 'https://myfeed.com/feed.xml'
       }
     end
@@ -55,6 +57,7 @@ RSpec.describe Mutations::UpdateFeed do
     let(:input) do
       {
         title: 'My feed',
+        kind: FeedKind::TEXT.upcase,
         url: 'feed'
       }
     end

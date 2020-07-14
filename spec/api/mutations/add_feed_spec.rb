@@ -11,6 +11,7 @@ RSpec.describe Mutations::AddFeed do
         addFeed(input: $input) {
           feed {
             title
+            kind
             url
           }
         }
@@ -28,6 +29,7 @@ RSpec.describe Mutations::AddFeed do
     let(:input) do
       {
         title: 'My feed',
+        kind: FeedKind::TEXT.upcase,
         url: 'https://myfeed.com/feed.xml'
       }
     end
@@ -45,6 +47,7 @@ RSpec.describe Mutations::AddFeed do
     let(:input) do
       {
         title: 'My feed',
+        kind: FeedKind::TEXT.upcase,
         url: 'feed'
       }
     end
