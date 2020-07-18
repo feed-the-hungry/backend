@@ -35,7 +35,7 @@ RSpec.describe Mutations::UpdateFeed do
       {
         title: 'My feed',
         kind: FeedKind::TEXT.upcase,
-        url: 'https://myfeed.com/feed.xml'
+        url: 'https://brunoarueira.com/feed.xml'
       }
     end
 
@@ -49,38 +49,71 @@ RSpec.describe Mutations::UpdateFeed do
       last_feed = repository.last
 
       expect(last_feed.title).to eq 'My feed'
-      expect(last_feed.url).to eq 'https://myfeed.com/feed.xml'
+      expect(last_feed.url).to eq 'https://brunoarueira.com/feed.xml'
     end
   end
 
   context 'invalid' do
-    let(:input) do
-      {
-        title: 'My feed',
-        kind: FeedKind::TEXT.upcase,
-        url: 'feed'
-      }
+    context 'url' do
+      let(:input) do
+        {
+          title: 'My feed',
+          kind: FeedKind::TEXT.upcase,
+          url: 'feed'
+        }
+      end
+
+      it 'does not update a feed with invalid input and report errors' do
+        expect(repository.all.count).to eq 1
+
+        result = Schema.execute(query, variables: variables).to_h
+
+        expect(result['errors'][0]['extensions']['problems']).to eq(
+          [{
+            'path' => ['url'],
+            'explanation' => '"feed" is not a valid URL',
+            'message' => '"feed" is not a valid URL'
+          }]
+        )
+
+        expect(repository.all.count).to eq 1
+
+        last_feed = repository.last
+
+        expect(last_feed.title).to eq 'Blog'
+        expect(last_feed.url).to eq 'https://blog.com/feed.xml'
+      end
     end
 
-    it 'does not update a feed with invalid input and report errors' do
-      expect(repository.all.count).to eq 1
+    context 'feed' do
+      let(:input) do
+        {
+          title: 'My feed',
+          kind: FeedKind::TEXT.upcase,
+          url: 'https://brunoarueira.com'
+        }
+      end
 
-      result = Schema.execute(query, variables: variables).to_h
+      it 'does not update a feed and report errors' do
+        expect(repository.all.count).to eq 1
 
-      expect(result['errors'][0]['extensions']['problems']).to eq(
-        [{
-          'path' => ['url'],
-          'explanation' => '"feed" is not a valid URL',
-          'message' => '"feed" is not a valid URL'
-        }]
-      )
+        result = Schema.execute(query, variables: variables).to_h
 
-      expect(repository.all.count).to eq 1
+        expect(result['errors'][0]['extensions']['problems']).to eq(
+          [{
+            'path' => ['url'],
+            'explanation' => '"https://brunoarueira.com" must be a feed url',
+            'message' => '"https://brunoarueira.com" must be a feed url'
+          }]
+        )
 
-      last_feed = repository.last
+        expect(repository.all.count).to eq 1
 
-      expect(last_feed.title).to eq 'Blog'
-      expect(last_feed.url).to eq 'https://blog.com/feed.xml'
+        last_feed = repository.last
+
+        expect(last_feed.title).to eq 'Blog'
+        expect(last_feed.url).to eq 'https://blog.com/feed.xml'
+      end
     end
   end
 end

@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
-class FeedKind
+module FeedKind
   TEXT = 'text'
   AUDIO = 'audio'
+
+  def self.all
+    [TEXT, AUDIO]
+  end
 end

@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://validator.w3.org/feed/check.cgi?output=soap12&url=https://brunoarueira.com/feed.xml
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 18 Jul 2020 21:23:24 GMT
+      Server:
+      - Apache/2.4.38 (Debian)
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/soap+xml; charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<env:Envelope xmlns:env=\"http://www.w3.org/2003/05/soap-envelope\">\n<env:Body>\n<m:feedvalidationresponse
+        env:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\" xmlns:m=\"http://www.w3.org/2005/10/feed-validator\">\n
+        \     <m:uri>https://brunoarueira.com/feed.xml</m:uri> \n      <m:checkedby>https://validator.w3.org/feed/check.cgi</m:checkedby>\n
+        \     <m:date>2020-07-18T21:23:25.351203</m:date>\n      <m:validity>true</m:validity>\n
+        \ <m:errors>\n        <m:errorcount>0</m:errorcount>\n        <m:errorlist></m:errorlist>\n
+        \   </m:errors>\n    <m:warnings>\n        <m:warningcount>1</m:warningcount>\n\t<m:warninglist><warning>\n
+        \ <level>warning</level>\n  <type>MissingAtomSelfLink</type>\n  <line>30</line>\n
+        \ <column>173</column>\n  <text>Missing atom:link with rel=&quot;self&quot;</text>\n
+        \ <msgcount>1</msgcount>\n  <backupcolumn>173</backupcolumn>\n  <backupline>30</backupline>\n
+        \ <element>channel</element>\n</warning>\n</m:warninglist>\n    </m:warnings>\n
+        \   <m:informations>\n\t<m:infocount>0</m:infocount>\n\t<m:infolist></m:infolist>\n
+        \   </m:informations>\n</m:feedvalidationresponse>\n</env:Body>\n</env:Envelope>\n\n"
+  recorded_at: Sat, 18 Jul 2020 21:23:26 GMT
+recorded_with: VCR 6.0.0
