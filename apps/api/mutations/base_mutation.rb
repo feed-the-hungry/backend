@@ -6,7 +6,10 @@ module Mutations
 
     def raise_invalid_resource(resource_name, result)
       raise GraphQL::ExecutionError.new(
-        I18n.t('errors.messages.invalid_resource', resource_name: resource_name),
+        I18n.t(
+          'errors.messages.invalid_resource',
+          resource_name: resource_name
+        ),
         extensions: {
           code: INVALID_RESOURCE,
           problems: format_errors(result)
