@@ -3,7 +3,6 @@
 require_relative 'base_mutation'
 require_relative '../types/feed_input'
 require_relative '../types/feed'
-require_relative '../validators/feed_validator'
 
 module Mutations
   class AddFeed < Mutations::BaseMutation
@@ -12,14 +11,14 @@ module Mutations
     field :feed, Types::Feed, null: true
 
     def resolve(input:)
-      result = Api::Validators::FeedValidator.new(input).validate
+      result = ::AddFeed.new.call(input)
 
-      if result.success?
+      if result.successful?
         {
-          feed: FeedRepository.new.create(input)
+          feed: result.feed
         }
       else
-        raise_invalid_resource('feed', result)
+        raise_invalid_resource('feed', result.errors)
       end
     end
   end
