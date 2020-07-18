@@ -28,9 +28,9 @@ RSpec.describe Mutations::AddFeed do
   context 'valid' do
     let(:input) do
       {
-        title: 'My feed',
+        title: 'Bruno Arueira',
         kind: FeedKind::TEXT.upcase,
-        url: 'https://myfeed.com/feed.xml'
+        url: 'https://brunoarueira.com/feed.xml'
       }
     end
 
@@ -44,28 +44,56 @@ RSpec.describe Mutations::AddFeed do
   end
 
   context 'invalid' do
-    let(:input) do
-      {
-        title: 'My feed',
-        kind: FeedKind::TEXT.upcase,
-        url: 'feed'
-      }
+    context 'url' do
+      let(:input) do
+        {
+          title: 'My feed',
+          kind: FeedKind::TEXT.upcase,
+          url: 'feed'
+        }
+      end
+
+      it 'does not create a new feed and report errors' do
+        expect(repository.all.count).to eq 0
+
+        result = Schema.execute(query, variables: variables).to_h
+
+        expect(result['errors'][0]['extensions']['problems']).to eq(
+          [{
+            'path' => ['url'],
+            'explanation' => '"feed" is not a valid URL',
+            'message' => '"feed" is not a valid URL'
+          }]
+        )
+
+        expect(repository.all.count).to eq 0
+      end
     end
 
-    it 'does not create a new feed and report errors' do
-      expect(repository.all.count).to eq 0
+    context 'feed' do
+      let(:input) do
+        {
+          title: 'My feed',
+          kind: FeedKind::TEXT.upcase,
+          url: 'https://brunoarueira.com'
+        }
+      end
 
-      result = Schema.execute(query, variables: variables).to_h
+      it 'does not create a new feed and report errors' do
+        expect(repository.all.count).to eq 0
 
-      expect(result['errors'][0]['extensions']['problems']).to eq(
-        [{
-          'path' => ['url'],
-          'explanation' => '"feed" is not a valid URL',
-          'message' => '"feed" is not a valid URL'
-        }]
-      )
+        result = Schema.execute(query, variables: variables).to_h
 
-      expect(repository.all.count).to eq 0
+        expect(result['errors'][0]['extensions']['problems']).to eq(
+          [{
+            'path' => ['url'],
+            'explanation' => '"https://brunoarueira.com" must be a feed url',
+            'message' => '"https://brunoarueira.com" must be a feed url'
+          }]
+        )
+
+        expect(repository.all.count).to eq 0
+      end
     end
   end
 end

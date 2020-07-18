@@ -12,9 +12,15 @@ module Mutations
     field :feed, Types::Feed, null: true
 
     def resolve(id:, input:)
-      {
-        feed: FeedRepository.new.update(id, input)
-      }
+      result = Api::Validators::FeedValidator.new(input).validate
+
+      if result.success?
+        {
+          feed: FeedRepository.new.update(id, input)
+        }
+      else
+        raise_invalid_resource('feed', result)
+      end
     end
   end
 end
