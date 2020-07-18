@@ -12,14 +12,14 @@ module Mutations
     field :feed, Types::Feed, null: true
 
     def resolve(id:, input:)
-      result = Api::Validators::FeedValidator.new(input).validate
+      result = ::UpdateFeed.new.call(id, input)
 
-      if result.success?
+      if result.successful?
         {
           feed: FeedRepository.new.update(id, input)
         }
       else
-        raise_invalid_resource('feed', result)
+        raise_invalid_resource('feed', result.errors)
       end
     end
   end
