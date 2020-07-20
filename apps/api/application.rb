@@ -17,7 +17,11 @@ module Api
       #
       # When you add new directories, remember to add them here.
       #
-      load_paths << ['controllers']
+      load_paths << %w[
+        controllers
+        types
+        mutations
+      ]
 
       # Handle exceptions with HTTP statuses (true) or don't catch them (false).
       # Defaults to true.
@@ -86,12 +90,14 @@ module Api
       # Default format for the requests that don't specify an HTTP_ACCEPT header
       # Argument: A symbol representation of a mime type, defaults to :html
       #
-      # default_request_format :html
+      default_request_format :json
 
       # Default format for responses that don't consider the request format
       # Argument: A symbol representation of a mime type, defaults to :html
       #
-      # default_response_format :html
+      default_response_format :json
+
+      body_parsers :json
 
       ##
       # SECURITY
