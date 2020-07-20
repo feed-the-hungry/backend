@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/feed-the-hungry/backend.svg?branch=master)](https://travis-ci.org/feed-the-hungry/backend)
 [![codecov](https://codecov.io/gh/feed-the-hungry/backend/branch/master/graph/badge.svg)](https://codecov.io/gh/feed-the-hungry/backend)
+[![Maintainability](https://api.codeclimate.com/v1/badges/ab0be18c94272a59a117/maintainability)](https://codeclimate.com/github/feed-the-hungry/backend/maintainability)
 
 This project aims to serve an [GraphQL](https://graphql.org/) API about a RSS feed, which through will be added feed, kinds, categories and fetch entries!
 
