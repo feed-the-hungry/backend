@@ -11,5 +11,13 @@ module Types
     field :email, Types::Email, null: false
     field :created_at, Types::DateTime, null: false
     field :updated_at, Types::DateTime, null: false
+    field :feeds, Types::Feed.connection_type, null: true, connection: true
+
+    def feeds
+      UserRepository
+        .new
+        .find_with_feeds(object.id)
+        .feeds
+    end
   end
 end

@@ -16,7 +16,7 @@ module Mutations
 
       if result.successful?
         {
-          feed: FeedRepository.new.update(id, input)
+          feed: result.feed
         }
       else
         raise_invalid_resource('feed', result.errors)
