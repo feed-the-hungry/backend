@@ -6,23 +6,25 @@ module Types
   class Url < Types::BaseScalar
     description 'A valid URL, transported as a string'
 
-    def self.coerce_input(value, _ctx)
-      url = URI.parse(value)
-
-      if url.is_a?(URI::HTTP) || url.is_a?(URI::HTTPS)
-        value.to_s
-      else
-        raise_coercion_error("#{value.inspect} is not a valid URL")
+    class << self
+      def coerce_input(value, _ctx)
+        coerce(value)
       end
-    end
 
-    def self.coerce_result(value, _ctx)
-      url = URI.parse(value)
+      def coerce_result(value, _ctx)
+        coerce(value)
+      end
 
-      if url.is_a?(URI::HTTP) || url.is_a?(URI::HTTPS)
-        value.to_s
-      else
-        raise_coercion_error("#{value.inspect} is not a valid URL")
+      private
+
+      def coerce(value)
+        url = URI.parse(value)
+
+        if url.is_a?(URI::HTTP) || url.is_a?(URI::HTTPS)
+          value.to_s
+        else
+          raise_coercion_error("#{value.inspect} is not a valid URL")
+        end
       end
     end
   end
