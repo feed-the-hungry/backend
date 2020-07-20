@@ -9,8 +9,6 @@ module Types
     def self.coerce_input(value, _ctx)
       return if value.nil? || value&.strip == ''
 
-      return value if value.is_a?(DateTime)
-
       Time.parse(value)
     rescue ArgumentError
       raise_coercion_error("#{value.inspect} is not a valid DateTime")
