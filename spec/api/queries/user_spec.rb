@@ -20,7 +20,13 @@ RSpec.describe Types::User do
   end
   let(:user_feed_repository) { UserFeedRepository.new }
   let!(:user_feed_one) { user_feed_repository.create(user_id: user.id, feed_id: feed_one.id) }
-  let!(:user_feed_two) { user_feed_repository.create(user_id: user.id, feed_id: feed_two.id) }
+  let!(:user_feed_two) do
+    user_feed_repository.create(
+      user_id: user.id,
+      feed_id: feed_two.id,
+      created_at: DateTime.now + 120
+    )
+  end
 
   let(:query) do
     <<-GRAPHQL
