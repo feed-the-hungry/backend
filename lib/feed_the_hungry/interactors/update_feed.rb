@@ -3,10 +3,12 @@
 require 'hanami/interactor'
 
 require_relative 'interactor_helpers'
+require_relative 'add_feed_to_user'
 
 class UpdateFeed
   include Hanami::Interactor
   include InteractorHelpers
+  include AddFeedToUser
 
   expose :feed
 
@@ -39,11 +41,5 @@ class UpdateFeed
     else
       repository.update(id, attributes)
     end
-  end
-
-  def add_feed_to_user!(feed, user_id)
-    user = user_repository.find(user_id)
-
-    user_repository.add_feed(user, feed)
   end
 end
