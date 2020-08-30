@@ -1,18 +1,14 @@
 # frozen_string_literal: true
 
 class FeedRepository < Hanami::Repository
+  include ExistHelper
+
   associations do
     has_many :users, through: :user_feeds
   end
 
   def url_exist?(id: nil, url: nil)
-    return false if url.nil? || url&.strip == ''
-
-    if id.nil?
-      feeds.exist?(url: url)
-    else
-      feeds.exclude(id: id).exist?(url: url)
-    end
+    exist?(id: id, field: :url, value: url, collection: feeds)
   end
 
   def find_by_url(url)
