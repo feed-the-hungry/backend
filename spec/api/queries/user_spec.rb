@@ -12,10 +12,22 @@ RSpec.describe Types::User do
     )
   end
   let(:feed_two) do
+    current_date_time = DateTime.now
+    created_at =
+      DateTime.new(
+        current_date_time.year,
+        current_date_time.month,
+        current_date_time.day,
+        current_date_time.hour,
+        current_date_time.minute,
+        current_date_time.second + 10
+      )
+
     feed_repository.create(
       title: 'Blog 2',
       url: 'https://blogtwo.com/feed.xml',
-      kind: FeedKind::TEXT
+      kind: FeedKind::TEXT,
+      created_at: created_at
     )
   end
   let(:user_feed_repository) { UserFeedRepository.new }
