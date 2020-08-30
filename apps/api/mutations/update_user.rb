@@ -6,10 +6,11 @@ require_relative '../types/user'
 
 module Mutations
   class UpdateUser < Mutations::BaseMutation
-    argument :id, ID, required: true
-    argument :input, Types::UserInput, required: true
-
-    field :user, Types::User, null: true
+    basic_update_arguments(
+      return_field_name: :user,
+      return_type: Types::User,
+      input_type: Types::UserInput
+    )
 
     def resolve(id:, input:)
       result = ::UpdateUser.new.call(id, input)

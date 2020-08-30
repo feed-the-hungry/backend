@@ -6,9 +6,7 @@ require_relative '../types/user'
 
 module Mutations
   class AddUser < Mutations::BaseMutation
-    argument :input, Types::UserInput, required: true
-
-    field :user, Types::User, null: true
+    basic_add_arguments(return_field_name: :user, return_type: Types::User, input_type: Types::UserInput)
 
     def resolve(input:)
       result = ::AddUser.new.call(input)
