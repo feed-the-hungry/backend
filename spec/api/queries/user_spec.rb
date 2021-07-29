@@ -61,23 +61,23 @@ RSpec.describe Types::User do
         'email' => 'jack@email.com',
         'name' => 'Jack',
         'feeds' => hash_including({
-          'edges' => [
-            {
-              'node' => {
-                'kind' => FeedKind::TEXT.upcase,
-                'title' => 'Blog 1',
-                'url' => 'https://blog.com/feed.xml'
-              }
-            },
-            {
-              'node' => {
-                'kind' => FeedKind::TEXT.upcase,
-                'title' => 'Blog 2',
-                'url' => 'https://blogtwo.com/feed.xml'
-              }
-            }
-          ]
-        })
+                                    'edges' => [
+                                      {
+                                        'node' => {
+                                          'kind' => FeedKind::TEXT.upcase,
+                                          'title' => 'Blog 1',
+                                          'url' => 'https://blog.com/feed.xml'
+                                        }
+                                      },
+                                      {
+                                        'node' => {
+                                          'kind' => FeedKind::TEXT.upcase,
+                                          'title' => 'Blog 2',
+                                          'url' => 'https://blogtwo.com/feed.xml'
+                                        }
+                                      }
+                                    ]
+                                  })
       }
     )
   end
