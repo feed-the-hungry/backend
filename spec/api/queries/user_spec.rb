@@ -11,23 +11,11 @@ RSpec.describe Types::User do
       kind: FeedKind::TEXT
     )
   end
-  let(:feed_two) do
-    current_date_time = DateTime.now
-    created_at =
-      DateTime.new(
-        current_date_time.year,
-        current_date_time.month,
-        current_date_time.day,
-        current_date_time.hour,
-        current_date_time.minute,
-        current_date_time.second + 10
-      )
-
+  let!(:feed_two) do
     feed_repository.create(
       title: 'Blog 2',
       url: 'https://blogtwo.com/feed.xml',
-      kind: FeedKind::TEXT,
-      created_at: created_at
+      kind: FeedKind::TEXT
     )
   end
   let(:user_feed_repository) { UserFeedRepository.new }
@@ -35,8 +23,7 @@ RSpec.describe Types::User do
   let!(:user_feed_two) do
     user_feed_repository.create(
       user_id: user.id,
-      feed_id: feed_two.id,
-      created_at: DateTime.now + 120
+      feed_id: feed_two.id
     )
   end
 
@@ -69,11 +56,11 @@ RSpec.describe Types::User do
   it 'return a user with their feeds' do
     result = Schema.execute(query, variables: variables).to_h
 
-    expect(result['data']).to eq(
+    expect(result['data']).to include(
       'user' => {
         'email' => 'jack@email.com',
         'name' => 'Jack',
-        'feeds' => {
+        'feeds' => hash_including({
           'edges' => [
             {
               'node' => {
@@ -90,7 +77,7 @@ RSpec.describe Types::User do
               }
             }
           ]
-        }
+        })
       }
     )
   end
