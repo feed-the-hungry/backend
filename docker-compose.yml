@@ -4,7 +4,7 @@ services:
   app: &app
     build:
       context: .
-    image: rss-hub-backend:1.0.0
+    image: fth-backend:1.0.0
 
   backend: &backend
     <<: *app
@@ -17,8 +17,6 @@ services:
       - RACK_ENV=${RACK_ENV:-development}
     env_file:
       - env/dev/web.env
-    tty: true
-    stdin_open: true
     depends_on:
       - postgres
 
@@ -36,11 +34,11 @@ services:
       - 3000:3000
 
   postgres:
-    image: postgres:12.2-alpine
+    image: postgres:12-alpine
     volumes:
       - postgres_volume:/var/lib/postgresql/data
     ports:
-      - 5432:5432
+      - 5435:5432
     env_file: env/dev/db.env
     healthcheck:
       test: pg_isready -U app -h 127.0.0.1
