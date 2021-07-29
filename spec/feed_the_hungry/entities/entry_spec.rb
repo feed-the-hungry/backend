@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-RSpec.describe UserFeedRepository, type: :repository do
+RSpec.describe Entry, type: :entity do
   # place your tests here
 end
