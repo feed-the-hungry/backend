@@ -6,9 +6,7 @@ require_relative '../types/feed'
 
 module Mutations
   class AddFeed < Mutations::BaseMutation
-    argument :input, Types::FeedInput, required: true
-
-    field :feed, Types::Feed, null: true
+    basic_add_arguments(return_field_name: :feed, return_type: Types::Feed, input_type: Types::FeedInput)
 
     def resolve(input:)
       result = ::AddFeed.new.call(input)

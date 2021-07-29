@@ -6,17 +6,18 @@ require_relative '../types/feed'
 
 module Mutations
   class UpdateFeed < Mutations::BaseMutation
-    argument :id, ID, required: true
-    argument :input, Types::FeedInput, required: true
-
-    field :feed, Types::Feed, null: true
+    basic_update_arguments(
+      return_field_name: :feed,
+      return_type: Types::Feed,
+      input_type: Types::FeedInput
+    )
 
     def resolve(id:, input:)
       result = ::UpdateFeed.new.call(id, input)
 
       if result.successful?
         {
-          feed: FeedRepository.new.update(id, input)
+          feed: result.feed
         }
       else
         raise_invalid_resource('feed', result.errors)

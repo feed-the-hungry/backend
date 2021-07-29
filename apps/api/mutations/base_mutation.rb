@@ -17,6 +17,19 @@ module Mutations
       )
     end
 
+    def self.basic_update_arguments(return_field_name:, return_type:, input_type:)
+      argument :id, ID, required: true
+      argument :input, input_type, required: true
+
+      field return_field_name, return_type, null: true
+    end
+
+    def self.basic_add_arguments(return_field_name:, return_type:, input_type:)
+      argument :input, input_type, required: true
+
+      field return_field_name, return_type, null: true
+    end
+
     private
 
     def format_errors(errors)

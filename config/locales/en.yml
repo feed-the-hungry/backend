@@ -2,4 +2,8 @@ en:
   errors:
     messages:
       invalid_resource: "The %{resource_name} is invalid"
+      unique: "is in use"
     feed_url?: "must be a feed url"
+    email?: "must be a valid email"
+    filled?: "can not be blank"
+    str?: "must be a string"

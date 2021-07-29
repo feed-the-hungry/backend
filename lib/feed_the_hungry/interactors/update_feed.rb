@@ -2,31 +2,44 @@
 
 require 'hanami/interactor'
 
+require_relative 'interactor_helpers'
+require_relative 'add_feed_to_user'
+
 class UpdateFeed
   include Hanami::Interactor
+  include InteractorHelpers
+  include AddFeedToUser
 
   expose :feed
 
-  def initialize(repository: FeedRepository.new)
+  def initialize(repository: FeedRepository.new, user_repository: UserRepository.new)
     @repository = repository
+    @user_repository = user_repository
   end
 
   def call(id, attributes)
     result = FeedValidator.new(attributes).validate
 
     if result.success?
-      @feed = repository.update(id, attributes)
-    else
-      messages = result.messages
-      output = result.output
+      @feed = update_or_return_feed(id, attributes)
 
-      messages.each do |attribute, message|
-        error({ attribute => { value: output[attribute], message: message } })
-      end
+      add_feed_to_user!(@feed, attributes[:user_id])
+    else
+      error_messages(result)
     end
   end
 
   private
 
-  attr_reader :repository
+  attr_reader :repository, :user_repository
+
+  def update_or_return_feed(id, attributes)
+    url = attributes[:url]
+
+    if repository.url_exist?(id: id, url: url)
+      repository.find_by_url(url)
+    else
+      repository.update(id, attributes)
+    end
+  end
 end

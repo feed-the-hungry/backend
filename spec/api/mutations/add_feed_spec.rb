@@ -5,6 +5,10 @@ RSpec.describe Mutations::AddFeed do
 
   let(:repository) { FeedRepository.new }
 
+  let(:user_repository) { UserRepository.new }
+
+  let!(:user) { user_repository.create(name: 'Jack', email: 'jack@email.com') }
+
   let(:query) do
     <<-GRAPHQL
       mutation ($input: FeedInput!) {
@@ -26,20 +30,55 @@ RSpec.describe Mutations::AddFeed do
   end
 
   context 'valid' do
-    let(:input) do
-      {
-        title: 'Bruno Arueira',
-        kind: FeedKind::TEXT.upcase,
-        url: 'https://brunoarueira.com/feed.xml'
-      }
+    context 'with a new feed' do
+      let(:input) do
+        {
+          title: 'Bruno Arueira',
+          kind: FeedKind::TEXT.upcase,
+          url: 'https://brunoarueira.com/feed.xml',
+          userId: user.id
+        }
+      end
+
+      it 'successfully create' do
+        expect(repository.all.count).to eq 0
+
+        Schema.execute(query, variables: variables)
+
+        expect(repository.all.count).to eq 1
+
+        last_user = user_repository.find_with_feeds(user.id)
+
+        expect(last_user.feeds.length).to eq 1
+      end
     end
 
-    it 'successfully create a new feed' do
-      expect(repository.all.count).to eq 0
+    context 'with an existent feed' do
+      let!(:another_user) { user_repository.create(name: 'Bob', email: 'bob@email.com') }
+      let!(:another_feed) do
+        repository.create(input.merge(id: another_user.id, kind: FeedKind::TEXT))
+      end
 
-      Schema.execute(query, variables: variables)
+      let(:input) do
+        {
+          title: 'Bruno Arueira',
+          kind: FeedKind::TEXT.upcase,
+          url: 'https://brunoarueira.com/feed.xml',
+          userId: user.id
+        }
+      end
 
-      expect(repository.all.count).to eq 1
+      it 'successfully add to user' do
+        expect(repository.all.count).to eq 1
+
+        Schema.execute(query, variables: variables)
+
+        expect(repository.all.count).to eq 1
+
+        last_user = user_repository.find_with_feeds(user.id)
+
+        expect(last_user.feeds.length).to eq 1
+      end
     end
   end
 
@@ -49,7 +88,8 @@ RSpec.describe Mutations::AddFeed do
         {
           title: 'My feed',
           kind: FeedKind::TEXT.upcase,
-          url: 'feed'
+          url: 'feed',
+          userId: user.id
         }
       end
 
@@ -75,7 +115,8 @@ RSpec.describe Mutations::AddFeed do
         {
           title: 'My feed',
           kind: FeedKind::TEXT.upcase,
-          url: 'https://brunoarueira.com'
+          url: 'https://brunoarueira.com',
+          userId: user.id
         }
       end
 

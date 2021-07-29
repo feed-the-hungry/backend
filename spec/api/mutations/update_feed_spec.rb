@@ -5,6 +5,8 @@ RSpec.describe Mutations::UpdateFeed do
 
   let(:repository) { FeedRepository.new }
 
+  let!(:user) { UserRepository.new.create(name: 'Jack', email: 'jack@email.com') }
+
   let!(:feed) do
     repository.create(title: 'Blog', kind: FeedKind::TEXT, url: 'https://blog.com/feed.xml')
   end
@@ -35,7 +37,8 @@ RSpec.describe Mutations::UpdateFeed do
       {
         title: 'My feed',
         kind: FeedKind::TEXT.upcase,
-        url: 'https://brunoarueira.com/feed.xml'
+        url: 'https://brunoarueira.com/feed.xml',
+        userId: user.id
       }
     end
 
@@ -59,7 +62,8 @@ RSpec.describe Mutations::UpdateFeed do
         {
           title: 'My feed',
           kind: FeedKind::TEXT.upcase,
-          url: 'feed'
+          url: 'feed',
+          userId: user.id
         }
       end
 
@@ -90,7 +94,8 @@ RSpec.describe Mutations::UpdateFeed do
         {
           title: 'My feed',
           kind: FeedKind::TEXT.upcase,
-          url: 'https://brunoarueira.com'
+          url: 'https://brunoarueira.com',
+          userId: user.id
         }
       end
 

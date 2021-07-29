@@ -11,7 +11,7 @@ require_relative '../lib/feed_the_hungry'
 require_relative '../apps/api/application'
 
 Hanami.configure do
-  mount Api::Application, at: '/api'
+  mount Api::Application, at: '/'
   model do
     ##
     # Database adapter
