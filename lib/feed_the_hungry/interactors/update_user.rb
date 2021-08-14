@@ -17,7 +17,7 @@ class UpdateUser
   def call(id, attributes)
     result = UserValidator.new(attributes).validate
 
-    email_exist = repository.email_exist?(id: id, email: attributes[:email])
+    email_exist = repository.email_exist?(email: attributes[:email])
 
     if result.success? && !email_exist
       @user = repository.update(id, attributes)

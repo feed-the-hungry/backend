@@ -7,14 +7,14 @@ class UserRepository < Hanami::Repository
     has_many :feeds, through: :user_feeds
   end
 
-  def email_exist?(id: nil, email: nil)
-    exist?(id: id, field: :email, value: email, collection: users)
+  def email_exist?(email: nil)
+    exist?(field: :email, value: email, collection: users)
   end
 
   def find_with_feeds(id)
     aggregate(:feeds)
       .where(id: id)
-      .order(feeds[:created_at].asc)
+      .order(feeds[:created_at])
       .map_to(User).one
   end
 
