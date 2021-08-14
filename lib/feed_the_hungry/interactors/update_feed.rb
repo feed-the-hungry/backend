@@ -18,7 +18,7 @@ class UpdateFeed
   end
 
   def call(id, attributes)
-    result = FeedValidator.new(attributes).validate
+    result = FeedTheHungry::Validators::FeedValidator.new(attributes).validate
 
     if result.success?
       @feed = update_or_return_feed(id, attributes)

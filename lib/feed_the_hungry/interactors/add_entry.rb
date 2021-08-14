@@ -15,12 +15,14 @@ class AddEntry
   end
 
   def call(attributes)
-    result = EntryValidator.new(attributes).validate
+    result = FeedTheHungry::Validators::EntryValidator.new(attributes).validate
 
     if result.success?
       @entry = repository.create(attributes)
     else
       error_messages(result)
+
+      fail!
     end
   end
 

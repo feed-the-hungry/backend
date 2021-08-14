@@ -176,6 +176,8 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.9.0)
     rspec-support (3.9.3)
+    rss (0.2.9)
+      rexml
     rubocop (0.89.1)
       parallel (~> 1.10)
       parser (>= 2.7.1.1)
@@ -229,6 +231,7 @@ DEPENDENCIES
   puma
   rake
   rspec
+  rss
   rubocop
   shotgun
   sidekiq
