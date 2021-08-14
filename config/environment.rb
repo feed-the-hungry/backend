@@ -39,6 +39,12 @@ Hanami.configure do
     delivery :test
   end
 
+  environment :test do
+    if ENV['TEST_LOG']
+      logger level: :info, stream: 'log/test.log'
+    end
+  end
+
   environment :development do
     # See: https://guides.hanamirb.org/projects/logging
     logger level: :debug
