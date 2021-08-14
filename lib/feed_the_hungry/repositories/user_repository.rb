@@ -7,8 +7,8 @@ class UserRepository < Hanami::Repository
     has_many :feeds, through: :user_feeds
   end
 
-  def email_exist?(id: nil, email: nil)
-    exist?(id: id, field: :email, value: email, collection: users)
+  def email_exist?(email: nil)
+    exist?(field: :email, value: email, collection: users)
   end
 
   def find_with_feeds(id)

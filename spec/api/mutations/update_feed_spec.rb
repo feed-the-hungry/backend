@@ -33,26 +33,52 @@ RSpec.describe Mutations::UpdateFeed do
   end
 
   context 'valid' do
-    let(:input) do
-      {
-        title: 'My feed',
-        kind: FeedKind::TEXT.upcase,
-        url: 'https://brunoarueira.com/feed.xml',
-        userId: user.id
-      }
+    context 'change url from feed' do
+      let(:input) do
+        {
+          title: 'My feed',
+          kind: FeedKind::TEXT.upcase,
+          url: 'https://brunoarueira.com/feed.xml',
+          userId: user.id
+        }
+      end
+
+      it 'successfully update feed record' do
+        expect(repository.all.count).to eq 1
+
+        Schema.execute(query, variables: variables)
+
+        expect(repository.all.count).to eq 1
+
+        last_feed = repository.last
+
+        expect(last_feed.title).to eq 'My feed'
+        expect(last_feed.url).to eq 'https://brunoarueira.com/feed.xml'
+      end
     end
 
-    it 'successfully update feed record' do
-      expect(repository.all.count).to eq 1
+    context 'does not change url from feed' do
+      let(:input) do
+        {
+          title: 'My feed',
+          kind: FeedKind::TEXT.upcase,
+          url: 'https://blog.com/feed.xml',
+          userId: user.id
+        }
+      end
 
-      Schema.execute(query, variables: variables)
+      it 'successfully update title from feed record' do
+        expect(repository.all.count).to eq 1
 
-      expect(repository.all.count).to eq 1
+        Schema.execute(query, variables: variables)
 
-      last_feed = repository.last
+        expect(repository.all.count).to eq 1
 
-      expect(last_feed.title).to eq 'My feed'
-      expect(last_feed.url).to eq 'https://brunoarueira.com/feed.xml'
+        last_feed = repository.last
+
+        expect(last_feed.title).to eq 'Blog'
+        expect(last_feed.url).to eq 'https://blog.com/feed.xml'
+      end
     end
   end
 

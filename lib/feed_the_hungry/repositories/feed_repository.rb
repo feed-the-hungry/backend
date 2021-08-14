@@ -7,8 +7,8 @@ class FeedRepository < Hanami::Repository
     has_many :users, through: :user_feeds
   end
 
-  def url_exist?(id: nil, url: nil)
-    exist?(id: id, field: :url, value: url, collection: feeds)
+  def url_exist?(url: nil)
+    exist?(field: :url, value: url, collection: feeds)
   end
 
   def find_by_url(url)
