@@ -14,7 +14,7 @@ class UserRepository < Hanami::Repository
   def find_with_feeds(id)
     aggregate(:feeds)
       .where(id: id)
-      .order(feeds[:created_at].asc)
+      .order(feeds[:created_at])
       .map_to(User).one
   end
 
