@@ -40,9 +40,7 @@ Hanami.configure do
   end
 
   environment :test do
-    if ENV['TEST_LOG']
-      logger level: :info, stream: 'log/test.log'
-    end
+    logger level: :info, stream: 'log/test.log' if ENV['TEST_LOG']
   end
 
   environment :development do
