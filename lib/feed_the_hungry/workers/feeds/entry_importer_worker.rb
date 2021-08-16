@@ -3,8 +3,10 @@
 module FeedTheHungry
   module Workers
     module Feeds
-      class EntryImporter
+      class EntryImporterWorker
         include Sidekiq::Worker
+
+        sidekiq_options queue: :scheduler
 
         def perform
           FeedTheHungry::Interactors::Entries::Import.new.call

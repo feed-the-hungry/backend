@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe FeedTheHungry::Workers::Feeds::EntryImporter do
+RSpec.describe FeedTheHungry::Workers::Feeds::EntryImporterWorker do
   describe '#perform' do
     it do
       entries_import = spy

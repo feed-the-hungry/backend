@@ -12,6 +12,7 @@ gem 'puma'
 gem 'rake'
 gem 'rss'
 gem 'sidekiq'
+gem 'sidekiq-scheduler'
 
 group :development do
   gem 'hanami-webconsole'

@@ -8,6 +8,7 @@
   - default
   - low
   - mailers
+  - scheduler
 
 production:
   :concurrency: 20
@@ -15,3 +16,8 @@ staging:
   :concurrency: 20
 development:
   :concurrency: 20
+
+schedule:
+  entry_importer_worker:
+    cron: '*/30 * * * *'
+    class: FeedTheHungry::Workers::Feeds::EntryImporterWorker
