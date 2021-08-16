@@ -18,7 +18,7 @@ module Types
     end
 
     def user(id:)
-      UserRepository.new.find_with_feeds(id)
+      UserRepository.new.find(id)
     end
   end
 end
