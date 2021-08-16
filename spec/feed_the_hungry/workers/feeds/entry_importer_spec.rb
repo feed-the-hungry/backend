@@ -3,9 +3,11 @@
 RSpec.describe FeedTheHungry::Workers::Feeds::EntryImporter do
   describe '#perform' do
     it do
-      import_interactor = instance_double('FeedTheHungry::Interactors::Entries::Import')
+      entries_import = double
 
-      allow_any_instance_of(import_interactor).to receive(:call)
+      expect(entries_import).to receive(:call)
+
+      allow(FeedTheHungry::Interactors::Entries::Import).to receive(:new).and_return(entries_import)
 
       described_class.new.perform
     end
