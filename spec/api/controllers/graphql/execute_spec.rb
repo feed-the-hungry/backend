@@ -5,9 +5,7 @@ RSpec.describe Api::Controllers::Graphql::Execute, type: :action do
 
   let(:action) { described_class.new }
   let(:params) do
-    Hash[
-      query: %({ feeds { title url } })
-    ]
+    { query: %({ feeds { title url } }) }
   end
 
   let!(:feed) do
