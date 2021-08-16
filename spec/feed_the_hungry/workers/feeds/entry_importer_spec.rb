@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe FeedTheHungry::Workers::Feeds::EntryImporter do
   describe '#perform' do
     it do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'hanami/interactor'
 
 module FeedTheHungry
@@ -15,13 +17,19 @@ module FeedTheHungry
             parsed_entries.each do |attributes|
               result = AddEntry.new.call(attributes)
 
-              unless result.successful?
-                Hanami.logger.info(
-                  "[FTH][FEED_IMPORT] The entry #{attributes[:guid]} for #{feed.url} can't be imported"
-                )
-              end
+              next if result.successful?
+
+              log_issue_to_import_entries!(attributes[:guid], feed.url)
             end
           end
+        end
+
+        private
+
+        def log_issue_to_import_entries!(guid, feed_url)
+          Hanami.logger&.info(
+            "[FTH][FEED_IMPORT] The entry #{guid} for #{feed_url} can't be imported"
+          )
         end
       end
     end

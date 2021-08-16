@@ -1,9 +1,13 @@
+# frozen_string_literal: true
+
 RSpec.describe FeedTheHungry::Interactors::Entries::Import do
   include TransactionalSpec
 
   let(:entry_repository) { EntryRepository.new }
 
-  let!(:feed) { FeedRepository.new.create(title: 'Blog', kind: FeedKind::TEXT, url: 'https://brunoarueira.com/feed.xml') }
+  let!(:feed) do
+    FeedRepository.new.create(title: 'Blog', kind: FeedKind::TEXT, url: 'https://brunoarueira.com/feed.xml')
+  end
 
   describe '#call' do
     context 'with valid entries' do

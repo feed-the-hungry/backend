@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FeedTheHungry
   module Workers
     module Feeds
