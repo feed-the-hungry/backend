@@ -14,10 +14,9 @@ module Types
     field :feeds, Types::Feed.connection_type, null: true, connection: true
 
     def feeds
-      UserRepository
+      UserFeedRepository
         .new
-        .find_with_feeds(object.id)
-        .feeds
+        .feeds_from_user(object)
     end
   end
 end

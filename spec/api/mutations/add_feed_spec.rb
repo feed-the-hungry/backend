@@ -41,9 +41,9 @@ RSpec.describe Mutations::AddFeed do
 
         expect(repository.all.count).to eq 1
 
-        last_user = user_repository.find_with_feeds(user.id)
+        feeds = UserFeedRepository.new.feeds_from_user(user)
 
-        expect(last_user.feeds.length).to eq 1
+        expect(feeds.length).to eq 1
       end
     end
 
@@ -67,9 +67,9 @@ RSpec.describe Mutations::AddFeed do
 
         expect(repository.all.count).to eq 1
 
-        last_user = user_repository.find_with_feeds(user.id)
+        feeds = UserFeedRepository.new.feeds_from_user(user)
 
-        expect(last_user.feeds.length).to eq 1
+        expect(feeds.length).to eq 1
       end
     end
   end
