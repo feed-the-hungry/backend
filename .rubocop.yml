@@ -1,3 +1,6 @@
+require:
+  - rubocop-rspec
+
 AllCops:
   NewCops: enable
   TargetRubyVersion:
@@ -7,4 +10,12 @@ Style/Documentation:
 Metrics/BlockLength:
   Enabled: false
 Layout/SpaceAroundMethodCallOperator:
+  Enabled: false
+RSpec/LetSetup:
+  Enabled: false
+RSpec/ExampleLength:
+  Enabled: false
+RSpec/NamedSubject:
+  Enabled: false
+RSpec/MultipleExpectations:
   Enabled: false

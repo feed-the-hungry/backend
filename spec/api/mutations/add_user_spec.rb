@@ -24,7 +24,7 @@ RSpec.describe Mutations::AddUser do
     }
   end
 
-  context 'valid' do
+  context 'with valid data' do
     let(:input) do
       {
         name: 'Jack',
@@ -41,8 +41,8 @@ RSpec.describe Mutations::AddUser do
     end
   end
 
-  context 'invalid' do
-    context 'email already exists' do
+  context 'with invalid data' do
+    context 'when email already exists' do
       let!(:user) { repository.create(input) }
 
       let(:input) do
@@ -69,7 +69,7 @@ RSpec.describe Mutations::AddUser do
       end
     end
 
-    context 'invalid email' do
+    context 'when email is invalid' do
       let(:input) do
         {
           name: 'Jack',
@@ -94,7 +94,7 @@ RSpec.describe Mutations::AddUser do
       end
     end
 
-    context 'invalid data' do
+    context 'without name' do
       let(:input) do
         {
           name: '',

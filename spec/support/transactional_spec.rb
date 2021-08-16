@@ -5,7 +5,7 @@ module TransactionalSpec
     RSpec.configure do |config|
       db = Sequel::Model.db
 
-      config.around(:each) do |example|
+      config.around do |example|
         db.transaction(rollback: :always, auto_savepoint: true) do
           example.run
         end

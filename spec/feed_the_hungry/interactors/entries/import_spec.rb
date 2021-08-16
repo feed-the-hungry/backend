@@ -11,7 +11,7 @@ RSpec.describe FeedTheHungry::Interactors::Entries::Import do
 
   describe '#call' do
     context 'with valid entries' do
-      it 'should fetch them from a rss feed and save on the database' do
+      it 'fetches them from a rss feed and save on the database' do
         expect(entry_repository.all.count).to eq 0
 
         subject.call
@@ -21,12 +21,10 @@ RSpec.describe FeedTheHungry::Interactors::Entries::Import do
     end
 
     context 'with invalid entries' do
-      it 'should fetch them from a rss feed and does not save on the database' do
+      it 'fetches them from a rss feed and does not save on the database' do
         entries = [{ feed_id: feed.id, guid: 'foo' }]
 
         allow(FeedTheHungry::Interactors::Entries::Parser).to receive(:call).and_return(entries)
-
-        expect(entry_repository.all.count).to eq 0
 
         subject.call
 

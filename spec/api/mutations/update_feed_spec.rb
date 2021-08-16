@@ -25,15 +25,8 @@ RSpec.describe Mutations::UpdateFeed do
     GRAPHQL
   end
 
-  let(:variables) do
-    {
-      id: feed.id,
-      input: input
-    }
-  end
-
-  context 'valid' do
-    context 'change url from feed' do
+  context 'with valid data' do
+    context 'when change url from feed' do
       let(:input) do
         {
           title: 'My feed',
@@ -46,7 +39,7 @@ RSpec.describe Mutations::UpdateFeed do
       it 'successfully update feed record' do
         expect(repository.all.count).to eq 1
 
-        Schema.execute(query, variables: variables)
+        Schema.execute(query, variables: { id: feed.id, input: input })
 
         expect(repository.all.count).to eq 1
 
@@ -57,7 +50,7 @@ RSpec.describe Mutations::UpdateFeed do
       end
     end
 
-    context 'does not change url from feed' do
+    context 'when does not change url from feed' do
       let(:input) do
         {
           title: 'My feed',
@@ -70,7 +63,7 @@ RSpec.describe Mutations::UpdateFeed do
       it 'successfully update title from feed record' do
         expect(repository.all.count).to eq 1
 
-        Schema.execute(query, variables: variables)
+        Schema.execute(query, variables: { id: feed.id, input: input })
 
         expect(repository.all.count).to eq 1
 
@@ -82,8 +75,8 @@ RSpec.describe Mutations::UpdateFeed do
     end
   end
 
-  context 'invalid' do
-    context 'url' do
+  context 'with invalid data' do
+    context 'when url is invalid' do
       let(:input) do
         {
           title: 'My feed',
@@ -96,7 +89,7 @@ RSpec.describe Mutations::UpdateFeed do
       it 'does not update a feed with invalid input and report errors' do
         expect(repository.all.count).to eq 1
 
-        result = Schema.execute(query, variables: variables).to_h
+        result = Schema.execute(query, variables: { id: feed.id, input: input }).to_h
 
         expect(result['errors'][0]['extensions']['problems']).to eq(
           [{
@@ -115,7 +108,7 @@ RSpec.describe Mutations::UpdateFeed do
       end
     end
 
-    context 'feed' do
+    context 'when url is not a feed' do
       let(:input) do
         {
           title: 'My feed',
@@ -128,7 +121,7 @@ RSpec.describe Mutations::UpdateFeed do
       it 'does not update a feed and report errors' do
         expect(repository.all.count).to eq 1
 
-        result = Schema.execute(query, variables: variables).to_h
+        result = Schema.execute(query, variables: { id: feed.id, input: input }).to_h
 
         expect(result['errors'][0]['extensions']['problems']).to eq(
           [{
