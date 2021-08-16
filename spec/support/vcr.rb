@@ -9,7 +9,7 @@ end
 
 RSpec.configure do |config|
   # Add VCR to all tests
-  config.around(:each) do |example|
+  config.around do |example|
     options = example.metadata[:vcr] || {}
     if options[:record] == :skip
       VCR.turned_off(&example)
@@ -19,7 +19,7 @@ RSpec.configure do |config|
              .split(/\s+/, 2)
              .join('/')
              .downcase
-             .gsub(/\./, '/')
+             .tr('.', '/')
              .gsub(%r{[^\w/]+}, '_')
              .gsub(%r{/$}, '')
       VCR.use_cassette(name, record: :once, &example)

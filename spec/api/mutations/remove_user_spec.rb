@@ -13,7 +13,7 @@ RSpec.describe Mutations::RemoveUser do
     GRAPHQL
   end
 
-  context 'valid' do
+  context 'with valid data' do
     let!(:user) { repository.create(name: 'Jack', email: 'jack@email.com') }
 
     let(:variables) do
@@ -33,7 +33,7 @@ RSpec.describe Mutations::RemoveUser do
     end
   end
 
-  context 'invalid' do
+  context 'with invalid data' do
     let(:variables) do
       {
         id: SecureRandom.uuid

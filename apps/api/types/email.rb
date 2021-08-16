@@ -7,7 +7,7 @@ module Types
     description 'A valid email'
 
     def self.coerce_input(value, _ctx)
-      if value =~ FeedTheHungry::EMAIL_REGEX
+      if FeedTheHungry::EMAIL_REGEX.match?(value)
         value.to_s
       else
         raise_coercion_error("#{value.inspect} is not a valid email")
@@ -15,7 +15,7 @@ module Types
     end
 
     def self.coerce_result(value, _ctx)
-      if value =~ FeedTheHungry::EMAIL_REGEX
+      if FeedTheHungry::EMAIL_REGEX.match?(value)
         value.to_s
       else
         raise_coercion_error("#{value.inspect} is not a valid email")

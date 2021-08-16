@@ -28,7 +28,7 @@ RSpec.describe Mutations::UpdateUser do
     }
   end
 
-  context 'valid' do
+  context 'with valid data' do
     let(:input) do
       {
         name: 'Jack',
@@ -55,15 +55,17 @@ RSpec.describe Mutations::UpdateUser do
     end
   end
 
-  context 'invalid' do
-    context 'email already exists' do
-      let!(:another_user) { repository.create(input) }
-
+  context 'with invalid data' do
+    context 'when email already exists' do
       let(:input) do
         {
           name: 'Jack',
           email: 'jack@email.com'
         }
+      end
+
+      before do
+        repository.create(input)
       end
 
       it 'does not update a user and report errors' do
@@ -83,7 +85,7 @@ RSpec.describe Mutations::UpdateUser do
       end
     end
 
-    context 'invalid email' do
+    context 'when invalid email' do
       let(:input) do
         {
           name: 'Jack',
@@ -108,7 +110,7 @@ RSpec.describe Mutations::UpdateUser do
       end
     end
 
-    context 'invalid data' do
+    context 'when the data is invalid' do
       let(:input) do
         {
           name: '',

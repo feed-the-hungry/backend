@@ -6,7 +6,6 @@ gem 'feedvalidator'
 gem 'graphql'
 gem 'hanami',             '~> 1.3'
 gem 'hanami-model',       '~> 1.3'
-gem 'hanami-validations', '~> 1.3'
 gem 'i18n'
 gem 'pg'
 gem 'puma'
@@ -18,6 +17,8 @@ group :development do
   gem 'hanami-webconsole'
   gem 'lefthook'
   gem 'rubocop', require: false
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rspec', require: false
   gem 'shotgun', platforms: :ruby
 end
 

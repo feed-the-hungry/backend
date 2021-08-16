@@ -12,7 +12,7 @@ preload_app!
 
 rackup      DefaultRackup
 port        3000, '0.0.0.0'
-environment ENV.fetch('RACK_ENV') { 'development' }
+environment ENV.fetch('RACK_ENV', 'development')
 
 on_worker_boot do
   Hanami.boot
