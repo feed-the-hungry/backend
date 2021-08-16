@@ -19,7 +19,7 @@ RSpec.configure do |config|
              .split(/\s+/, 2)
              .join('/')
              .downcase
-             .gsub(/\./, '/')
+             .tr('.', '/')
              .gsub(%r{[^\w/]+}, '_')
              .gsub(%r{/$}, '')
       VCR.use_cassette(name, record: :once, &example)

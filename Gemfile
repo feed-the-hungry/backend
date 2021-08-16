@@ -17,6 +17,7 @@ group :development do
   gem 'hanami-webconsole'
   gem 'lefthook'
   gem 'rubocop', require: false
+  gem 'rubocop-performance', require: false
   gem 'rubocop-rspec', require: false
   gem 'shotgun', platforms: :ruby
 end
