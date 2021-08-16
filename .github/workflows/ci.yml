@@ -34,6 +34,10 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+      redis:
+        image: redis:alpine
+        ports:
+          - 6379:6379
 
     steps:
       - uses: actions/checkout@v2
@@ -43,5 +47,6 @@ jobs:
           bundler-cache: true
       - run: |
           export DATABASE_URL=postgres://app:password@localhost:5432/feed_the_hungry_test
+          export REDIS_URL=redis://localhost:6379
           bundle exec hanami db prepare HANAMI_ENV=test
           bundle exec rake spec

@@ -4,7 +4,7 @@ services:
   app: &app
     build:
       context: .
-    image: fth-backend:1.0.0
+    image: fth-backend:1.0.1
 
   backend: &backend
     <<: *app
@@ -20,18 +20,20 @@ services:
     depends_on:
       - postgres
 
-  runner:
-    <<: *backend
-    command: /bin/sh
-    volumes:
-      - .:/app
-      - bundle:/usr/local/bundle
-
   web:
     <<: *backend
     command: bundle exec puma -C config/puma.rb
     ports:
       - 3000:3000
+    depends_on:
+      - sidekiq
+
+  sidekiq:
+    <<: *backend
+    command: bundle exec sidekiq -e development -C config/sidekiq.yml -r ./config/boot.rb
+    depends_on:
+      - redis
+      - postgres
 
   postgres:
     image: postgres:12-alpine
@@ -43,6 +45,18 @@ services:
     healthcheck:
       test: pg_isready -U app -h 127.0.0.1
       interval: 5s
+
+  redis:
+    image: redis:alpine
+    logging:
+      driver: "none"
+    ports:
+      - 6379:6379
+    healthcheck:
+      test: redis-cli ping
+      interval: 1s
+      timeout: 3s
+      retries: 30
 
 volumes:
   bundle:

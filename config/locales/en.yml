@@ -3,7 +3,10 @@ en:
     messages:
       invalid_resource: "The %{resource_name} is invalid"
       unique: "is in use"
-    feed_url?: "must be a feed url"
     email?: "must be a valid email"
+    feed_url?: "must be a feed url"
     filled?: "can not be blank"
+    key?: "is required"
     str?: "must be a string"
+    time?: "must be a time"
+    url?: "must be a http or https url"

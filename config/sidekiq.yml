@@ -1,0 +1,17 @@
+:verbose: false
+:concurrency: 20
+
+:timeout: 600
+
+:queues:
+  - critical
+  - default
+  - low
+  - mailers
+
+production:
+  :concurrency: 20
+staging:
+  :concurrency: 20
+development:
+  :concurrency: 20

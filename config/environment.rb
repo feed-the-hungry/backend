@@ -6,6 +6,7 @@ require 'hanami/model'
 require 'hanami/validations'
 
 require_relative './initializers/locale.rb'
+require_relative './initializers/sidekiq.rb'
 
 require_relative '../lib/feed_the_hungry'
 require_relative '../apps/api/application'

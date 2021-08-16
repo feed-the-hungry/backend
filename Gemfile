@@ -11,6 +11,8 @@ gem 'i18n'
 gem 'pg'
 gem 'puma'
 gem 'rake'
+gem 'rss'
+gem 'sidekiq'
 
 group :development do
   gem 'hanami-webconsole'

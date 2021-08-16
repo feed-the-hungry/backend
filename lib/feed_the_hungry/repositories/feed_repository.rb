@@ -5,6 +5,8 @@ class FeedRepository < Hanami::Repository
 
   associations do
     has_many :users, through: :user_feeds
+
+    has_many :entries
   end
 
   def url_exist?(url: nil)

@@ -18,7 +18,7 @@ class AddFeed
   end
 
   def call(attributes)
-    result = FeedValidator.new(attributes).validate
+    result = FeedTheHungry::Validators::FeedValidator.new(attributes).validate
 
     if result.success?
       @feed = create_or_return_feed(attributes)
