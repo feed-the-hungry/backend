@@ -1,21 +1,31 @@
-FROM ruby:2.6-alpine
-
-ENV BUILD_DEPENDENCIES "build-base git postgresql-dev postgresql-client tzdata bind-tools"
+# | base
+FROM ruby:2.6-alpine as base
 
 # Minimal requirements to run our backend and tests
-RUN apk update && apk add --no-cache --update $BUILD_DEPENDENCIES \
+RUN apk add --no-cache --update build-base git postgresql-dev postgresql-client tzdata && \
     rm -rf /var/cache/apk/*.tar.gz
 
-COPY Gemfile* /tmp/
-WORKDIR /tmp
+ENV APP_NAME fth-backend
+ENV APP_ROOT /app
 
-RUN bundle install --jobs `expr $(cat /proc/cpuinfo | grep -c "cpu cores") - 1` --retry 3 --without production \
-    && rm -rf $BUNDLE_PATH/cache/*.gem
+WORKDIR $APP_ROOT
 
-ENV APP_PATH /app
+COPY . .
 
-# Different layer for gems installation
-WORKDIR $APP_PATH
+# | bundle
+FROM base as bundle
 
-# Copy the application into the container
-COPY . $APP_PATH
+RUN bundle config set deployment 'true' && \
+    bundle config set without 'test' && \
+    bundle install --jobs `expr $(cat /proc/cpuinfo | grep -c "cpu cores") - 1` --retry 3 && \
+    rm -rf $BUNDLE_PATH/cache/*.gem
+
+# | backend
+FROM base as backend
+
+RUN mkdir -p $APP_ROOT/tmp/pids
+
+COPY --from=bundle $APP_ROOT $APP_ROOT
+COPY --from=bundle /usr/local/bundle/config /usr/local/bundle/config
+
+CMD bundle exec puma -C config/puma.rb
