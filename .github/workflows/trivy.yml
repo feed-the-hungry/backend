@@ -52,12 +52,13 @@ jobs:
       - name: Build an image from Dockerfile
         run: |
           docker buildx build -t fth-backend:${{ github.sha }} \
+          --output type=local,dest=/tmp/fth-backend.tar \
           --cache-to type=local,mode=max,dest=/tmp/.buildx-cache-new \
           --cache-from type=local,src=/tmp/.buildx-cache .
 
       - name: Run Trivy vulnerability scanner
         run: |
-          docker image ls
+          docker load --input /tmp/fth-backend.tar
           trivy image --format sarif --vuln-type os,library --severity CRITICAL,HIGH \
           --output trivy-results.sarif fth-backend:${{ github.sha }}
 
