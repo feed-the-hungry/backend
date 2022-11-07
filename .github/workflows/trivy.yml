@@ -1,4 +1,4 @@
-name: security | trivy
+name: security
 
 on:
   push:
@@ -18,11 +18,14 @@ jobs:
       contents: read # for actions/checkout to fetch code
       security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
       actions: read # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
-    name: Security | Trivy
+    name: Trivy
     runs-on: "ubuntu-18.04"
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Install trivy
+        run: apt-get install trivy
 
       - name: Set up Docker Buildx
         id: buildx
@@ -48,20 +51,18 @@ jobs:
           --cache-from type=local,src=/tmp/.buildx-cache .
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@7b7aa264d83dc58691451798b4d117d53d21edfe
-        with:
-          image-ref: 'fth-backend:${{ github.sha }}'
-          format: 'template'
-          template: '@/contrib/sarif.tpl'
-          output: 'trivy-results.sarif'
-          severity: 'CRITICAL,HIGH'
+        run: |
+          trivy --format sarif --vuln-type os,library --severity CRITICAL,HIGH \
+          --output trivy-results.sarif fth-backend:${{ github.sha }}
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v2
+        if: github.event_name != 'pull_request'
         with:
           sarif_file: 'trivy-results.sarif'
 
       - name: Moving Docker Cache
+        if: always()
         run: |
           rm -rf /tmp/.buildx-cache
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
