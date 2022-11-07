@@ -57,7 +57,7 @@ jobs:
 
       - name: Run Trivy vulnerability scanner
         run: |
-          trivy --format sarif --vuln-type os,library --severity CRITICAL,HIGH \
+          trivy image --format sarif --vuln-type os,library --severity CRITICAL,HIGH \
           --output trivy-results.sarif fth-backend:${{ github.sha }}
 
       - name: Upload Trivy scan results to GitHub Security tab
