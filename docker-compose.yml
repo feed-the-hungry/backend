@@ -22,7 +22,9 @@ services:
 
   web:
     <<: *backend
-    command: bundle exec puma -C config/puma.rb
+    command: >
+      sh -c "bundle check || bundle install &&
+             bundle exec puma -C config/puma.rb"
     ports:
       - 3000:3000
     depends_on:
