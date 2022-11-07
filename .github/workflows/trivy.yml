@@ -57,6 +57,7 @@ jobs:
 
       - name: Run Trivy vulnerability scanner
         run: |
+          docker image ls
           trivy image --format sarif --vuln-type os,library --severity CRITICAL,HIGH \
           --output trivy-results.sarif fth-backend:${{ github.sha }}
 
