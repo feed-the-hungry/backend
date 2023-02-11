@@ -4,7 +4,7 @@ services:
   app: &app
     build:
       context: .
-    image: fth-backend:1.0.2
+    image: fth-backend:1.0.3
 
   backend: &backend
     <<: *app
