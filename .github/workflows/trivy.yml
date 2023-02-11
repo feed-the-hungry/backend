@@ -58,16 +58,16 @@ jobs:
           --cache-to type=local,mode=max,dest=/tmp/.buildx-cache-new \
           --cache-from type=local,src=/tmp/.buildx-cache .
 
-          ls /tmp/
-
       - name: Run Trivy vulnerability scanner
         run: |
           FILE=/tmp/fth-backend.tar
 
           if [ -f "$FILE" ]; then
-            docker load --input $FILE
-            trivy image --format sarif --vuln-type os,library --severity CRITICAL,HIGH \
-            --output trivy-results.sarif fth-backend:${{ github.sha }}
+            cat $FILE | docker import - fth-backend:${{ github.sha }}
+
+            trivy image --format sarif --vuln-type os,library \
+            --severity CRITICAL,HIGH --output trivy-results.sarif \
+            fth-backend:${{ github.sha }}
           else
             echo "$FILE does not exist"
             exit 1
