@@ -1,5 +1,5 @@
 # | base
-FROM ruby:2.6-alpine as base
+FROM ruby:2.7-alpine as base
 
 # Minimal requirements to run our backend and tests
 RUN apk add --no-cache --update build-base git postgresql-dev postgresql-client tzdata && \
@@ -15,7 +15,8 @@ COPY . .
 # | bundle
 FROM base as bundle
 
-RUN bundle config set deployment 'true' && \
+RUN gem update bundler && \
+    bundle config set deployment 'true' && \
     bundle config set without 'test' && \
     bundle install --jobs `expr $(cat /proc/cpuinfo | grep -c "cpu cores") - 1` --retry 3 && \
     rm -rf $BUNDLE_PATH/cache/*.gem
