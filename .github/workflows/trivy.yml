@@ -51,16 +51,27 @@ jobs:
 
       - name: Build an image from Dockerfile
         run: |
+          mkdir -p /tmp/.buildx-cache
+
           docker buildx build -t fth-backend:${{ github.sha }} \
           --output type=tar,dest=/tmp/fth-backend.tar \
           --cache-to type=local,mode=max,dest=/tmp/.buildx-cache-new \
           --cache-from type=local,src=/tmp/.buildx-cache .
 
+          ls /tmp/
+
       - name: Run Trivy vulnerability scanner
         run: |
-          docker load --input /tmp/fth-backend.tar
-          trivy image --format sarif --vuln-type os,library --severity CRITICAL,HIGH \
-          --output trivy-results.sarif fth-backend:${{ github.sha }}
+          FILE=/tmp/fth-backend.tar
+
+          if [ -f "$FILE" ]; then
+            docker load --input $FILE
+            trivy image --format sarif --vuln-type os,library --severity CRITICAL,HIGH \
+            --output trivy-results.sarif fth-backend:${{ github.sha }}
+          else
+            echo "$FILE does not exist"
+            exit 1
+          fi
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v2
