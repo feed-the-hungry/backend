@@ -52,7 +52,7 @@ jobs:
       - name: Build an image from Dockerfile
         run: |
           docker buildx build -t fth-backend:${{ github.sha }} \
-          --output type=local,dest=/tmp/fth-backend.tar \
+          --output type=tar,dest=/tmp/fth-backend.tar \
           --cache-to type=local,mode=max,dest=/tmp/.buildx-cache-new \
           --cache-from type=local,src=/tmp/.buildx-cache .
 
