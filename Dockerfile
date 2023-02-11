@@ -15,7 +15,9 @@ COPY . .
 # | bundle
 FROM base as bundle
 
-RUN gem update bundler && \
+RUN gem install --default bundler:2.4.6 && \
+    gem update --system && \
+    gem cleanup bundler && \
     bundle config set deployment 'true' && \
     bundle config set without 'test' && \
     bundle install --jobs `expr $(cat /proc/cpuinfo | grep -c "cpu cores") - 1` --retry 3 && \
