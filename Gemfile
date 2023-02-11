@@ -24,7 +24,7 @@ group :development do
 end
 
 group :test, :development do
-  gem 'dotenv', '~> 2.7'
+  gem 'dotenv', '~> 2.8'
 end
 
 group :test do
