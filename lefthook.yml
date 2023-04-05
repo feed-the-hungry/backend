@@ -4,7 +4,7 @@ pre-commit:
     rubocop:
       tags: backend style
       glob: "*.rb"
-      run: docker-compose run --rm runner bundle exec rubocop --parallel --force-exclusion -c .rubocop.yml {staged_files}
+      run: docker-compose run --rm backend bundle exec rubocop --parallel --force-exclusion -c .rubocop.yml {staged_files}
 
 pre-push:
   parallel: true
@@ -13,4 +13,4 @@ pre-push:
       tags: backend style
       files: git diff --name-only master
       glob: "*.rb"
-      run: docker-compose run --rm runner bundle exec rubocop --parallel --force-exclusion -c .rubocop.yml {files}
+      run: docker-compose run --rm backend bundle exec rubocop --parallel --force-exclusion -c .rubocop.yml {files}
