@@ -22,7 +22,7 @@ RUN gem install --default bundler:2.4.6 && \
     gem update --system && \
     bundle update --bundler && \
     bundle config set deployment ${BUNDLE_IS_PRD} && \
-    bundle config set without ${BUNDLE_WITHOUT_GROUPS} && \
+    [[ -z "${BUNDLE_WITHOUT_GROUPS}" ]] && bundle config set without ${BUNDLE_WITHOUT_GROUPS} || echo '' && \
     bundle install --jobs `expr $(cat /proc/cpuinfo | grep -c "cpu cores") - 1` --retry 3 && \
     rm -rf $BUNDLE_PATH/cache/*.gem
 
