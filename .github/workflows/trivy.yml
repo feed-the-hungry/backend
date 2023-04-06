@@ -19,7 +19,7 @@ jobs:
       security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
       actions: read # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
     name: Trivy
-    runs-on: "ubuntu-18.04"
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -54,6 +54,8 @@ jobs:
           mkdir -p /tmp/.buildx-cache
 
           docker buildx build -t fth-backend:${{ github.sha }} \
+          --build-arg BUNDLE_WITHOUT_GROUPS='test development' \
+          --build-arg BUNDLE_IS_PRD=true \
           --output type=tar,dest=/tmp/fth-backend.tar \
           --cache-to type=local,mode=max,dest=/tmp/.buildx-cache-new \
           --cache-from type=local,src=/tmp/.buildx-cache .
