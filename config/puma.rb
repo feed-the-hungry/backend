@@ -10,7 +10,6 @@ threads threads_count, threads_count
 
 preload_app!
 
-rackup      DefaultRackup
 port        3000, '0.0.0.0'
 environment ENV.fetch('RACK_ENV', 'development')
 
