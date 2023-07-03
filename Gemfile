@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 
 gem 'feedvalidator'
-gem 'graphql', '2.0.23'
+gem 'graphql', '2.0.24'
 gem 'hanami',             '~> 1.3'
 gem 'hanami-model',       '~> 1.3'
 gem 'i18n'
