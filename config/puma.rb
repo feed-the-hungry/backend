@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative './environment'
+require_relative 'environment'
 
 workers 2
 worker_timeout 30

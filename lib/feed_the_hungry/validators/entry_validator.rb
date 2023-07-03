@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative './http_uri_validator'
+require_relative 'http_uri_validator'
 
 module FeedTheHungry
   module Validators
