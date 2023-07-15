@@ -41,48 +41,29 @@ jobs:
             [registry."docker.io"]
               mirrors = ["mirror.gcr.io"]
 
-      - name: Cache Docker layers
-        uses: actions/cache@v3
+      - name: Build and load Backend
+        uses: docker/build-push-action@v4
         with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-multi-buildx-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-multi-buildx
-
-      - name: Build an image from Dockerfile
-        run: |
-          mkdir -p /tmp/.buildx-cache
-
-          docker buildx build -t fth-backend:${{ github.sha }} \
-          --build-arg BUNDLE_WITHOUT_GROUPS='test development' \
-          --build-arg BUNDLE_IS_PRD=true \
-          --output type=tar,dest=/tmp/fth-backend.tar \
-          --cache-to type=local,mode=max,dest=/tmp/.buildx-cache-new \
-          --cache-from type=local,src=/tmp/.buildx-cache .
+          context: .
+          builder: ${{ steps.buildx.outputs.name }}
+          file: ./Dockerfile
+          target: backend
+          load: true
+          build-args: |
+            BUNDLE_WITHOUT_GROUPS=test development
+            BUNDLE_IS_PRD=true
+          tags: fth-backend:${{ github.sha }}
+          cache-from: type=gha,scope=backend
+          cache-to: type=gha,scope=backend,mode=max
 
       - name: Run Trivy vulnerability scanner
         run: |
-          FILE=/tmp/fth-backend.tar
-
-          if [ -f "$FILE" ]; then
-            cat $FILE | docker import - fth-backend:${{ github.sha }}
-
-            trivy image --format sarif --vuln-type os,library \
-            --severity CRITICAL,HIGH --output trivy-results.sarif \
-            fth-backend:${{ github.sha }}
-          else
-            echo "$FILE does not exist"
-            exit 1
-          fi
+          trivy image --format sarif --vuln-type os,library \
+          --severity CRITICAL,HIGH --output trivy-results.sarif \
+          fth-backend:${{ github.sha }}
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v2
         if: github.event_name != 'pull_request'
         with:
           sarif_file: 'trivy-results.sarif'
-
-      - name: Moving Docker Cache
-        if: always()
-        run: |
-          rm -rf /tmp/.buildx-cache
-          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
