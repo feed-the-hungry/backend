@@ -22,7 +22,7 @@ jobs:
 
     services:
       postgres:
-        image: postgres:12-alpine
+        image: postgres:14.8-alpine3.18
         env:
           POSTGRES_USER: app
           POSTGRES_PASSWORD: password

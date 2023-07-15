@@ -43,7 +43,7 @@ services:
       - postgres
 
   postgres:
-    image: postgres:12-alpine
+    image: postgres:14.8-alpine3.18
     volumes:
       - postgres_volume:/var/lib/postgresql/data
     ports:
