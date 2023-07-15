@@ -52,7 +52,9 @@ jobs:
           build-args: |
             BUNDLE_WITHOUT_GROUPS=test development
             BUNDLE_IS_PRD=true
-          tags: fth-backend:${{ github.sha }}
+          tags: |
+            fth-backend
+            fth-backend:${{ github.sha }}
           cache-from: type=gha,scope=backend
           cache-to: type=gha,scope=backend,mode=max
 
