@@ -1,4 +1,8 @@
 # frozen_string_literal: true
 
-class Feed < Hanami::Entity
+module FeedTheHungry
+  module Entities
+    class Feed < ROM::Struct
+    end
+  end
 end

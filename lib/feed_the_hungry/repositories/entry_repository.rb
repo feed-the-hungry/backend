@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
-class EntryRepository < Hanami::Repository
-  associations do
-    belongs_to :feed
+require_relative 'repository'
+
+module FeedTheHungry
+  module Repositories
+    class EntryRepository < Repository[:entries]
+    end
   end
 end

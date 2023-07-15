@@ -2,36 +2,13 @@
 
 require 'bundler/setup'
 require 'hanami/setup'
-require 'hanami/model'
 require 'hanami/validations'
-
-require_relative 'initializers/locale'
-require_relative 'initializers/sidekiq'
 
 require_relative '../lib/feed_the_hungry'
 require_relative '../apps/api/application'
 
 Hanami.configure do
   mount Api::Application, at: '/'
-  model do
-    ##
-    # Database adapter
-    #
-    # Available options:
-    #
-    #  * SQL adapter
-    #    adapter :sql, 'sqlite://db/feed_the_hungry_development.sqlite3'
-    #    adapter :sql, 'postgresql://localhost/feed_the_hungry_development'
-    #    adapter :sql, 'mysql://localhost/feed_the_hungry_development'
-    #
-    adapter :sql, ENV.fetch('DATABASE_URL')
-
-    ##
-    # Migrations
-    #
-    migrations 'db/migrations'
-    schema     'db/schema.sql'
-  end
 
   mailer do
     root 'lib/feed_the_hungry/mailers'

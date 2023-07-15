@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Hanami::Model.migration do
+ROM::SQL.migration do
   change do
     execute 'CREATE EXTENSION IF NOT EXISTS "uuid-ossp"'
 
@@ -9,7 +9,7 @@ Hanami::Model.migration do
         :id,
         'uuid',
         null: false,
-        default: Hanami::Model::Sql.function(:uuid_generate_v4)
+        default: 'uuid_generate_v4()'
       )
 
       column :title,      String,   null: false

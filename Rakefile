@@ -11,3 +11,11 @@ begin
   task default: :spec
 rescue LoadError # rubocop:disable Lint/SuppressedException
 end
+
+Rake::Task['db:migrate'].clear
+
+namespace :db do
+  task setup: :environment do
+    ROM::SQL::RakeSupport.env = FeedTheHungry::Persistence.configuration
+  end
+end
