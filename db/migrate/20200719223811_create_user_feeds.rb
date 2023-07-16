@@ -7,7 +7,7 @@ ROM::SQL.migration do
         :id,
         'uuid',
         null: false,
-        default: 'uuid_generate_v4()'
+        default: Sequel.function(:uuid_generate_v4)
       )
       foreign_key :user_id, :users, on_delete: :cascade, null: false, type: :uuid
       foreign_key :feed_id, :feeds, on_delete: :cascade, null: false, type: :uuid

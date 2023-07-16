@@ -12,7 +12,8 @@ class AddFeed
 
   expose :feed
 
-  def initialize(repository: FeedRepository.new, user_repository: UserRepository.new)
+  def initialize(repository: FeedTheHungry::Repositories::FeedRepository.new,
+                 user_repository: FeedTheHungry::Repositories::UserRepository.new)
     @repository = repository
     @user_repository = user_repository
   end

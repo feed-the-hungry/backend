@@ -7,6 +7,8 @@ module FeedTheHungry
     class Repository < ROM::Repository::Root
       struct_namespace FeedTheHungry::Entities
 
+      auto_struct true
+
       def self.[](relation)
         Class.new(self) { root(relation) }
       end
@@ -36,7 +38,11 @@ module FeedTheHungry
       end
 
       def delete(id)
-        root.by_pk(id).delete
+        root.by_pk(id).command(:delete, result: :one).call
+      end
+
+      def find(id)
+        root.by_pk(id).first
       end
 
       def clear

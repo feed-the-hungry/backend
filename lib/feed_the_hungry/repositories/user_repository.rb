@@ -12,7 +12,7 @@ module FeedTheHungry
       end
 
       def add_feed(user, feed)
-        assoc(:feeds, user).add(feed)
+        UserFeedRepository.new.create(user_id: user.id, feed_id: feed.id)
       end
     end
   end

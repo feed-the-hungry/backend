@@ -3,7 +3,7 @@
 RSpec.describe Mutations::UpdateUser do
   include TransactionalSpec
 
-  let(:repository) { UserRepository.new }
+  let(:repository) { FeedTheHungry::Repositories::UserRepository.new }
 
   let!(:user) { repository.create(name: 'Bob', email: 'bob@email.com') }
 

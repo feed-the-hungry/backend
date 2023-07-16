@@ -3,9 +3,9 @@
 RSpec.describe Mutations::UpdateFeed do
   include TransactionalSpec
 
-  let(:repository) { FeedRepository.new }
+  let(:repository) { FeedTheHungry::Repositories::FeedRepository.new }
 
-  let!(:user) { UserRepository.new.create(name: 'Jack', email: 'jack@email.com') }
+  let!(:user) { FeedTheHungry::Repositories::UserRepository.new.create(name: 'Jack', email: 'jack@email.com') }
 
   let!(:feed) do
     repository.create(title: 'Blog', kind: FeedKind::TEXT, url: 'https://blog.com/feed.xml')

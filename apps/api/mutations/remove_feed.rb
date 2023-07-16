@@ -9,7 +9,7 @@ module Mutations
     argument :id, ID, required: true
 
     def resolve(id:)
-      FeedRepository.new.delete(id) || false
+      FeedTheHungry::Repositories::FeedRepository.new.delete(id) || false
     end
   end
 end

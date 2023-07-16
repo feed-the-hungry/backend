@@ -3,7 +3,7 @@
 RSpec.describe Mutations::AddUser do
   include TransactionalSpec
 
-  let(:repository) { UserRepository.new }
+  let(:repository) { FeedTheHungry::Repositories::UserRepository.new }
 
   let(:query) do
     <<-GRAPHQL

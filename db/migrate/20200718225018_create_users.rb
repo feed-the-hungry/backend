@@ -7,7 +7,7 @@ ROM::SQL.migration do
         :id,
         'uuid',
         null: false,
-        default: 'uuid_generate_v4()'
+        default: Sequel.function(:uuid_generate_v4)
       )
 
       column :name,       String,   null: false

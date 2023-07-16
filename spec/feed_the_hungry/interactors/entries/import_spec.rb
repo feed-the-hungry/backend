@@ -3,10 +3,10 @@
 RSpec.describe FeedTheHungry::Interactors::Entries::Import do
   include TransactionalSpec
 
-  let(:entry_repository) { EntryRepository.new }
+  let(:entry_repository) { FeedTheHungry::Repositories::EntryRepository.new }
 
   let!(:feed) do
-    FeedRepository.new.create(title: 'Blog', kind: FeedKind::TEXT, url: 'https://brunoarueira.com/feed.xml')
+    FeedTheHungry::Repositories::FeedRepository.new.create(title: 'Blog', kind: FeedKind::TEXT, url: 'https://brunoarueira.com/feed.xml')
   end
 
   describe '#call' do

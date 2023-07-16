@@ -7,7 +7,7 @@ class RemoveUser
 
   expose :user
 
-  def initialize(repository: UserRepository.new)
+  def initialize(repository: FeedTheHungry::Repositories::UserRepository.new)
     @repository = repository
   end
 

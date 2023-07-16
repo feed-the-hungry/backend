@@ -2,6 +2,7 @@
 
 require 'rake'
 require 'hanami/rake_tasks'
+require 'rom/sql/rake_task'
 
 begin
   require 'rspec/core/rake_task'

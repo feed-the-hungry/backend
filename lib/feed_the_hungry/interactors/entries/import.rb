@@ -9,7 +9,7 @@ module FeedTheHungry
         include Hanami::Interactor
 
         def call
-          repository = FeedRepository.new
+          repository = FeedTheHungry::Repositories::FeedRepository.new
 
           repository.all.each do |feed|
             parsed_entries = Parser.call(feed)
