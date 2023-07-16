@@ -3,9 +3,9 @@
 RSpec.describe Mutations::AddFeed do
   include TransactionalSpec
 
-  let(:repository) { FeedRepository.new }
+  let(:repository) { FeedTheHungry::Repositories::FeedRepository.new }
 
-  let(:user_repository) { UserRepository.new }
+  let(:user_repository) { FeedTheHungry::Repositories::UserRepository.new }
 
   let!(:user) { user_repository.create(name: 'Jack', email: 'jack@email.com') }
 
@@ -41,7 +41,7 @@ RSpec.describe Mutations::AddFeed do
 
         expect(repository.all.count).to eq 1
 
-        feeds = UserFeedRepository.new.feeds_from_user(user)
+        feeds = FeedTheHungry::Repositories::UserFeedRepository.new.feeds_from_user(user)
 
         expect(feeds.length).to eq 1
       end
@@ -67,7 +67,7 @@ RSpec.describe Mutations::AddFeed do
 
         expect(repository.all.count).to eq 1
 
-        feeds = UserFeedRepository.new.feeds_from_user(user)
+        feeds = FeedTheHungry::Repositories::UserFeedRepository.new.feeds_from_user(user)
 
         expect(feeds.length).to eq 1
       end

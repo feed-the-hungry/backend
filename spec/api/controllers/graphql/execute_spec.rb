@@ -9,7 +9,7 @@ RSpec.describe Api::Controllers::Graphql::Execute, type: :action do
   end
 
   let!(:feed) do
-    FeedRepository.new.create(title: 'My feed', url: 'https://myfeed.com/feed.xml')
+    FeedTheHungry::Repositories::FeedRepository.new.create(title: 'My feed', url: 'https://myfeed.com/feed.xml')
   end
 
   it 'is successful' do

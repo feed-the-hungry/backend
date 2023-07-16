@@ -1,19 +1,19 @@
 # frozen_string_literal: true
 
-class FeedRepository < Hanami::Repository
-  include ExistHelper
+require_relative 'repository'
 
-  associations do
-    has_many :users, through: :user_feeds
+module FeedTheHungry
+  module Repositories
+    class FeedRepository < Repository[:feeds]
+      include ExistHelper
 
-    has_many :entries
-  end
+      def url_exist?(url: nil)
+        exist?(field: :url, value: url, collection: feeds)
+      end
 
-  def url_exist?(url: nil)
-    exist?(field: :url, value: url, collection: feeds)
-  end
-
-  def find_by_url(url)
-    feeds.where(url: url).first
+      def find_by_url(url)
+        feeds.where(url: url).first
+      end
+    end
   end
 end

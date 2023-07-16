@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-Hanami::Model.migration do
+ROM::SQL.migration do
   change do
     create_table :entries do
       primary_key(
         :id,
         'uuid',
         null: false,
-        default: Hanami::Model::Sql.function(:uuid_generate_v4)
+        default: Sequel.function(:uuid_generate_v4)
       )
       foreign_key :feed_id, :feeds, on_delete: :cascade, null: false, type: :uuid
 

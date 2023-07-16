@@ -1,4 +1,8 @@
 # frozen_string_literal: true
 
-class User < Hanami::Entity
+module FeedTheHungry
+  module Entities
+    class User < ROM::Struct
+    end
+  end
 end

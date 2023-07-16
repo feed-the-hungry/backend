@@ -3,7 +3,7 @@
 RSpec.describe Mutations::RemoveFeed do
   include TransactionalSpec
 
-  let(:repository) { FeedRepository.new }
+  let(:repository) { FeedTheHungry::Repositories::FeedRepository.new }
 
   let(:query) do
     <<-GRAPHQL

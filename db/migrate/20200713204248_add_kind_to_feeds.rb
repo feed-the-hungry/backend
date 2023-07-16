@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Hanami::Model.migration do
+ROM::SQL.migration do
   change do
     alter_table :feeds do
       add_column :kind, String, null: false

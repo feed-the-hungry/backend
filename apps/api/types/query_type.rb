@@ -14,11 +14,11 @@ module Types
     end
 
     def feeds
-      FeedRepository.new.all
+      FeedTheHungry::Repositories::FeedRepository.new.all
     end
 
     def user(id:)
-      UserRepository.new.find(id)
+      FeedTheHungry::Repositories::UserRepository.new.find(id)
     end
   end
 end

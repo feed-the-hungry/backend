@@ -3,7 +3,7 @@
 RSpec.describe Types::User do
   include TransactionalSpec
 
-  let!(:user) { UserRepository.new.create(name: 'Jack', email: 'jack@email.com') }
+  let!(:user) { FeedTheHungry::Repositories::UserRepository.new.create(name: 'Jack', email: 'jack@email.com') }
 
   let(:query) do
     <<-GRAPHQL
@@ -26,8 +26,8 @@ RSpec.describe Types::User do
   end
 
   before do
-    feed_repository = FeedRepository.new
-    user_feed_repository = UserFeedRepository.new
+    feed_repository = FeedTheHungry::Repositories::FeedRepository.new
+    user_feed_repository = FeedTheHungry::Repositories::UserFeedRepository.new
 
     feed_one = feed_repository.create(
       title: 'Blog 1',

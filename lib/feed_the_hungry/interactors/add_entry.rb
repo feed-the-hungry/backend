@@ -10,7 +10,7 @@ class AddEntry
 
   expose :entry
 
-  def initialize(repository: EntryRepository.new)
+  def initialize(repository: FeedTheHungry::Repositories::EntryRepository.new)
     @repository = repository
   end
 

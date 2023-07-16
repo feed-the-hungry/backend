@@ -14,7 +14,7 @@ module Types
     field :feeds, Types::Feed.connection_type, null: true, connection: true
 
     def feeds
-      UserFeedRepository
+      FeedTheHungry::Repositories::UserFeedRepository
         .new
         .feeds_from_user(object)
     end
