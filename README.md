@@ -10,7 +10,7 @@ This project aims to serve an [GraphQL](https://graphql.org/) API about a RSS fe
 
 ### Technologies
 
-This project uses Ruby 2.6, [Hanami](https://hanamirb.org/) and PostgreSQL.
+This project uses Ruby 3.1, [Hanami](https://hanamirb.org/) and PostgreSQL.
 
 ### Docker
 

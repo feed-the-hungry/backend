@@ -1,5 +1,5 @@
 # | base
-FROM ruby:2.7.7-alpine3.16 as base
+FROM ruby:3.1.4-alpine3.18 as base
 
 # Minimal requirements to run our backend and tests
 RUN apk add --no-cache --update build-base git postgresql-dev postgresql-client tzdata && \

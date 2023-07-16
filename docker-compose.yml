@@ -6,7 +6,7 @@ services:
       context: .
       args:
         BUNDLE_IS_PRD: 'false'
-    image: fth-backend:1.0.3
+    image: fth-backend:1.0.4
 
   backend: &backend
     <<: *app
