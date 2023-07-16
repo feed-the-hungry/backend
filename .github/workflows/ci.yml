@@ -48,5 +48,5 @@ jobs:
       - run: |
           export DATABASE_URL=postgres://app:password@localhost:5432/feed_the_hungry_test
           export REDIS_URL=redis://localhost:6379
-          bundle exec hanami db prepare HANAMI_ENV=test
+          bundle exec rake db:reset HANAMI_ENV=test
           bundle exec rake spec
