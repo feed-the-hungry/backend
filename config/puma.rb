@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative 'environment'
-
 workers 2
 worker_timeout 30
 
@@ -11,8 +9,8 @@ threads threads_count, threads_count
 preload_app!
 
 port        3000, '0.0.0.0'
-environment ENV.fetch('RACK_ENV', 'development')
+environment ENV.fetch('HANAMI_ENV', 'development')
 
-on_worker_boot do
-  Hanami.boot
+before_fork do
+  Hanami.app['persistence.rom'].disconnect
 end

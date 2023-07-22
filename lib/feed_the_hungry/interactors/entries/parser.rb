@@ -21,7 +21,7 @@ module FeedTheHungry
 
           def item_output(feed_id, item)
             {
-              feed_id: feed_id,
+              feed_id:,
               guid: item.guid.content,
               title: item.title,
               description: item.description,

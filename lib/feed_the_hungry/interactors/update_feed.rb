@@ -37,7 +37,7 @@ class UpdateFeed
   def update_or_return_feed(id, attributes)
     url = attributes[:url]
 
-    if repository.url_exist?(url: url)
+    if repository.url_exist?(url:)
       repository.find_by_url(url)
     else
       repository.update(id, attributes)

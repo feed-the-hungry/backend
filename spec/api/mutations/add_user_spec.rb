@@ -20,7 +20,7 @@ RSpec.describe Mutations::AddUser do
 
   let(:variables) do
     {
-      input: input
+      input:
     }
   end
 
@@ -35,7 +35,7 @@ RSpec.describe Mutations::AddUser do
     it 'successfully create a new user' do
       expect(repository.all.count).to eq 0
 
-      Schema.execute(query, variables: variables)
+      Schema.execute(query, variables:)
 
       expect(repository.all.count).to eq 1
     end
@@ -55,7 +55,7 @@ RSpec.describe Mutations::AddUser do
       it 'does not create a new user and report errors' do
         expect(repository.all.count).to eq 1
 
-        result = Schema.execute(query, variables: variables).to_h
+        result = Schema.execute(query, variables:).to_h
 
         expect(result['errors'][0]['extensions']['problems']).to eq(
           [{
@@ -80,7 +80,7 @@ RSpec.describe Mutations::AddUser do
       it 'does not create a new user and report errors' do
         expect(repository.all.count).to eq 0
 
-        result = Schema.execute(query, variables: variables).to_h
+        result = Schema.execute(query, variables:).to_h
 
         expect(result['errors'][0]['extensions']['problems']).to eq(
           [{
@@ -105,7 +105,7 @@ RSpec.describe Mutations::AddUser do
       it 'does not create a new user and report errors' do
         expect(repository.all.count).to eq 0
 
-        result = Schema.execute(query, variables: variables).to_h
+        result = Schema.execute(query, variables:).to_h
 
         expect(result['errors'][0]['extensions']['problems']).to eq(
           [{

@@ -24,7 +24,7 @@ RSpec.describe Mutations::UpdateUser do
   let(:variables) do
     {
       id: user.id,
-      input: input
+      input:
     }
   end
 
@@ -39,7 +39,7 @@ RSpec.describe Mutations::UpdateUser do
     it 'successfully update a user' do
       expect(repository.all.count).to eq 1
 
-      result = Schema.execute(query, variables: variables).to_h
+      result = Schema.execute(query, variables:).to_h
 
       expect(result['data']['updateUser']).to(
         eq(
@@ -71,7 +71,7 @@ RSpec.describe Mutations::UpdateUser do
       it 'does not update a user and report errors' do
         expect(repository.all.count).to eq 2
 
-        result = Schema.execute(query, variables: variables).to_h
+        result = Schema.execute(query, variables:).to_h
 
         expect(result['errors'][0]['extensions']['problems']).to eq(
           [{
@@ -96,7 +96,7 @@ RSpec.describe Mutations::UpdateUser do
       it 'does not update a user and report errors' do
         expect(repository.all.count).to eq 1
 
-        result = Schema.execute(query, variables: variables).to_h
+        result = Schema.execute(query, variables:).to_h
 
         expect(result['errors'][0]['extensions']['problems']).to eq(
           [{
@@ -121,7 +121,7 @@ RSpec.describe Mutations::UpdateUser do
       it 'does not update a user and report errors' do
         expect(repository.all.count).to eq 1
 
-        result = Schema.execute(query, variables: variables).to_h
+        result = Schema.execute(query, variables:).to_h
 
         expect(result['errors'][0]['extensions']['problems']).to eq(
           [{

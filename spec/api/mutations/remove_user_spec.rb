@@ -25,7 +25,7 @@ RSpec.describe Mutations::RemoveUser do
     it 'successfully remove user record' do
       expect(repository.all.count).to eq 1
 
-      result = Schema.execute(query, variables: variables).to_h
+      result = Schema.execute(query, variables:).to_h
 
       expect(result['data']['removeUser']).to be_truthy
 
@@ -43,7 +43,7 @@ RSpec.describe Mutations::RemoveUser do
     it 'does not remove a user which does not exist' do
       expect(repository.all.count).to eq 0
 
-      result = Schema.execute(query, variables: variables).to_h
+      result = Schema.execute(query, variables:).to_h
 
       expect(result['data']['removeUser']).to be_falsy
     end

@@ -6,14 +6,14 @@ module InteractorHelpers
     output = result.output
 
     messages.each do |attribute, message|
-      error({ attribute => { value: output[attribute], message: message } })
+      error({ attribute => { value: output[attribute], message: } })
     end
   end
 
   def unique_error(attribute, value)
     error(
       {
-        attribute => { value: value, message: [I18n.t('errors.messages.unique')] }
+        attribute => { value:, message: [I18n.t('errors.messages.unique')] }
       }
     )
   end

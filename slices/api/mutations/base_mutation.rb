@@ -8,7 +8,7 @@ module Mutations
       raise GraphQL::ExecutionError.new(
         I18n.t(
           'errors.messages.invalid_resource',
-          resource_name: resource_name
+          resource_name:
         ),
         extensions: {
           code: INVALID_RESOURCE,

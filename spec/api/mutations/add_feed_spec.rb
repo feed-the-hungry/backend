@@ -37,7 +37,7 @@ RSpec.describe Mutations::AddFeed do
       it 'successfully create' do
         expect(repository.all.count).to eq 0
 
-        Schema.execute(query, variables: { input: input })
+        Schema.execute(query, variables: { input: })
 
         expect(repository.all.count).to eq 1
 
@@ -63,7 +63,7 @@ RSpec.describe Mutations::AddFeed do
 
         expect(repository.all.count).to eq 1
 
-        Schema.execute(query, variables: { input: input })
+        Schema.execute(query, variables: { input: })
 
         expect(repository.all.count).to eq 1
 
@@ -88,7 +88,7 @@ RSpec.describe Mutations::AddFeed do
       it 'does not create a new feed and report errors' do
         expect(repository.all.count).to eq 0
 
-        result = Schema.execute(query, variables: { input: input }).to_h
+        result = Schema.execute(query, variables: { input: }).to_h
 
         expect(result['errors'][0]['extensions']['problems']).to eq(
           [{
@@ -115,7 +115,7 @@ RSpec.describe Mutations::AddFeed do
       it 'does not create a new feed and report errors' do
         expect(repository.all.count).to eq 0
 
-        result = Schema.execute(query, variables: { input: input }).to_h
+        result = Schema.execute(query, variables: { input: }).to_h
 
         expect(result['errors'][0]['extensions']['problems']).to eq(
           [{

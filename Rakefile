@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 require 'rake'
-require 'hanami/rake_tasks'
 require 'rom/sql/rake_task'
+
+task :environment do
+  require 'hanami/init'
+end
 
 begin
   require 'rspec/core/rake_task'

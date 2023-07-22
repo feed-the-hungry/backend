@@ -37,7 +37,7 @@ class AddFeed
   def create_or_return_feed(attributes)
     url = attributes[:url]
 
-    if repository.url_exist?(url: url)
+    if repository.url_exist?(url:)
       repository.find_by_url(url)
     else
       repository.create(attributes)
