@@ -2,7 +2,7 @@
 
 require 'feed_the_hungry/action'
 
-module Main
+module API
   class Action < FeedTheHungry::Action
   end
 end

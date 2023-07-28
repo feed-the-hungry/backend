@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Types::Email do
+RSpec.describe API::Types::Email do
   describe '.coerce_input' do
     it 'passing an invalid string value to be coerced' do
       expect do

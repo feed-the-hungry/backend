@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
-require 'hanami/interactor'
-
 module FeedTheHungry
   module Interactors
     module Entries
       class Import
-        include Hanami::Interactor
+        include Interactors::Base
 
         def call
           repository = FeedTheHungry::Repositories::FeedRepository.new
@@ -22,6 +20,8 @@ module FeedTheHungry
               log_issue_to_import_entries!(attributes[:guid], feed.url)
             end
           end
+
+          self
         end
 
         private

@@ -2,14 +2,16 @@
 
 require_relative 'base_mutation'
 
-module Mutations
-  class RemoveFeed < Mutations::BaseMutation
-    type Boolean
+module API
+  module Mutations
+    class RemoveFeed < BaseMutation
+      type Boolean
 
-    argument :id, ID, required: true
+      argument :id, ID, required: true
 
-    def resolve(id:)
-      FeedTheHungry::Repositories::FeedRepository.new.delete(id) || false
+      def resolve(id:)
+        FeedTheHungry::Repositories::FeedRepository.new.delete(id) || false
+      end
     end
   end
 end

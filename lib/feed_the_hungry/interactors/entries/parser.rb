@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'hanami/interactor'
-
 require 'rss'
 
 module FeedTheHungry

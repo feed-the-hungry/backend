@@ -2,11 +2,11 @@
 
 require_relative '../../schema'
 
-module Api
+module API
   module Actions
     module Graphql
-      class Execute < Api::Action
-        accept :json
+      class Execute < API::Action
+        format :json
 
         def handle(request, response)
           query_variables = request.params[:variables] || {}

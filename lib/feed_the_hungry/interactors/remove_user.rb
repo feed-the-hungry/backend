@@ -1,21 +1,25 @@
 # frozen_string_literal: true
 
-require 'hanami/interactor'
+module FeedTheHungry
+  module Interactors
+    class RemoveUser
+      include Interactors::Base
 
-class RemoveUser
-  include Hanami::Interactor
+      expose :user
 
-  expose :user
+      def initialize(repository: FeedTheHungry::Repositories::UserRepository.new)
+        @repository = repository
+      end
 
-  def initialize(repository: FeedTheHungry::Repositories::UserRepository.new)
-    @repository = repository
+      def call(id)
+        @user = repository.delete(id)
+
+        self
+      end
+
+      private
+
+      attr_reader :repository
+    end
   end
-
-  def call(id)
-    @user = repository.delete(id)
-  end
-
-  private
-
-  attr_reader :repository
 end

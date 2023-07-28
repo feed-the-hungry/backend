@@ -5,6 +5,8 @@ source 'https://rubygems.org'
 gem 'feedvalidator'
 gem 'graphql', '2.0.24'
 gem 'hanami', '~> 2.0'
+gem 'hanami-controller', '~> 2.0'
+gem 'hanami-validations', '~> 2.0'
 gem 'i18n'
 gem 'pg'
 gem 'puma'
@@ -30,6 +32,8 @@ end
 
 group :test do
   gem 'codecov', require: false
+  gem 'database_cleaner-sequel', require: false
+  gem 'rom-factory', '~> 0.10', require: false
   gem 'rspec'
   gem 'vcr', require: false
   gem 'webmock', require: false

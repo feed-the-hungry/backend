@@ -2,7 +2,7 @@
 
 module FeedTheHungry
   module Entities
-    class Entry < ROM::Struct
+    class Entry < Base
     end
   end
 end

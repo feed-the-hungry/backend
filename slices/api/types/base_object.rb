@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
-module Types
-  class BaseObject < GraphQL::Schema::Object
+require 'graphql'
+
+module API
+  module Types
+    class BaseObject < GraphQL::Schema::Object
+    end
   end
 end

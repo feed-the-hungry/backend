@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Api::Controllers::Graphql::Execute, type: :action do
-  include TransactionalSpec
-
+RSpec.describe API::Actions::Graphql::Execute, :db, type: :action do
   let(:action) { described_class.new }
   let(:params) do
     { query: %({ feeds { title url } }) }
@@ -15,9 +13,9 @@ RSpec.describe Api::Controllers::Graphql::Execute, type: :action do
   it 'is successful' do
     response = action.call(params)
 
-    expect(response[0]).to eq 200
+    expect(response.status).to eq 200
 
-    result = JSON.parse(response[2].first)
+    result = JSON.parse(response.body.first)
 
     expect(result).to eq(
       'data' => {

@@ -1,34 +1,35 @@
 # frozen_string_literal: true
 
-require 'hanami/interactor'
+module FeedTheHungry
+  module Interactors
+    class UpdateUser
+      include Interactors::Base
 
-require_relative 'interactor_helpers'
+      expose :user
 
-class UpdateUser
-  include Hanami::Interactor
-  include InteractorHelpers
+      def initialize(repository: FeedTheHungry::Repositories::UserRepository.new)
+        @repository = repository
+      end
 
-  expose :user
+      def call(id, attributes)
+        result = FeedTheHungry::Contracts::UserContract.new.call(attributes)
 
-  def initialize(repository: FeedTheHungry::Repositories::UserRepository.new)
-    @repository = repository
-  end
+        email_exist = repository.email_exist?(email: attributes[:email])
 
-  def call(id, attributes)
-    result = UserValidator.new(attributes).validate
+        if result.success? && !email_exist
+          @user = repository.update(id, attributes)
+        else
+          error_messages(result)
 
-    email_exist = repository.email_exist?(email: attributes[:email])
+          unique_error(:email, attributes[:email]) if email_exist
+        end
 
-    if result.success? && !email_exist
-      @user = repository.update(id, attributes)
-    else
-      error_messages(result)
+        self
+      end
 
-      unique_error(:email, attributes[:email]) if email_exist
+      private
+
+      attr_reader :repository
     end
   end
-
-  private
-
-  attr_reader :repository
 end

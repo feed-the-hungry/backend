@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
-module Types
-  class BaseEnum < GraphQL::Schema::Enum
+require 'graphql'
+
+module API
+  module Types
+    class BaseEnum < GraphQL::Schema::Enum
+    end
   end
 end

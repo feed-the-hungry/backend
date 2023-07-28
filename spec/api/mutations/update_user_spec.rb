@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Mutations::UpdateUser do
-  include TransactionalSpec
-
+RSpec.describe API::Mutations::UpdateUser, :db do
   let(:repository) { FeedTheHungry::Repositories::UserRepository.new }
 
   let!(:user) { repository.create(name: 'Bob', email: 'bob@email.com') }
@@ -39,7 +37,7 @@ RSpec.describe Mutations::UpdateUser do
     it 'successfully update a user' do
       expect(repository.all.count).to eq 1
 
-      result = Schema.execute(query, variables:).to_h
+      result = API::Schema.execute(query, variables:).to_h
 
       expect(result['data']['updateUser']).to(
         eq(
@@ -71,7 +69,7 @@ RSpec.describe Mutations::UpdateUser do
       it 'does not update a user and report errors' do
         expect(repository.all.count).to eq 2
 
-        result = Schema.execute(query, variables:).to_h
+        result = API::Schema.execute(query, variables:).to_h
 
         expect(result['errors'][0]['extensions']['problems']).to eq(
           [{
@@ -96,7 +94,7 @@ RSpec.describe Mutations::UpdateUser do
       it 'does not update a user and report errors' do
         expect(repository.all.count).to eq 1
 
-        result = Schema.execute(query, variables:).to_h
+        result = API::Schema.execute(query, variables:).to_h
 
         expect(result['errors'][0]['extensions']['problems']).to eq(
           [{
@@ -121,7 +119,7 @@ RSpec.describe Mutations::UpdateUser do
       it 'does not update a user and report errors' do
         expect(repository.all.count).to eq 1
 
-        result = Schema.execute(query, variables:).to_h
+        result = API::Schema.execute(query, variables:).to_h
 
         expect(result['errors'][0]['extensions']['problems']).to eq(
           [{

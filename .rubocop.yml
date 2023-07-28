@@ -20,3 +20,8 @@ RSpec/NamedSubject:
   Enabled: false
 RSpec/MultipleExpectations:
   Enabled: false
+
+Style/EmptyElse:
+  Enabled: true
+  Exclude:
+    - 'lib/feed_the_hungry/contracts/feed_contract.rb'

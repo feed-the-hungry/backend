@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
-module Types
-  class BaseInputObject < GraphQL::Schema::InputObject
+require 'graphql'
+
+module API
+  module Types
+    class BaseInputObject < GraphQL::Schema::InputObject
+    end
   end
 end

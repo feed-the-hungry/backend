@@ -8,20 +8,22 @@ require_relative '../mutations/add_user'
 require_relative '../mutations/remove_user'
 require_relative '../mutations/update_user'
 
-module Types
-  class MutationType < Types::BaseObject
-    graphql_name 'Mutation'
+module API
+  module Types
+    class MutationType < BaseObject
+      graphql_name 'Mutation'
 
-    field :add_feed, mutation: Mutations::AddFeed
+      field :add_feed, mutation: Mutations::AddFeed
 
-    field :remove_feed, mutation: Mutations::RemoveFeed
+      field :remove_feed, mutation: Mutations::RemoveFeed
 
-    field :update_feed, mutation: Mutations::UpdateFeed
+      field :update_feed, mutation: Mutations::UpdateFeed
 
-    field :add_user, mutation: Mutations::AddUser
+      field :add_user, mutation: Mutations::AddUser
 
-    field :remove_user, mutation: Mutations::RemoveUser
+      field :remove_user, mutation: Mutations::RemoveUser
 
-    field :update_user, mutation: Mutations::UpdateUser
+      field :update_user, mutation: Mutations::UpdateUser
+    end
   end
 end

@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Types::User do
-  include TransactionalSpec
-
+RSpec.describe API::Types::User, :db do
   let!(:user) { FeedTheHungry::Repositories::UserRepository.new.create(name: 'Jack', email: 'jack@email.com') }
 
   let(:query) do
@@ -32,12 +30,12 @@ RSpec.describe Types::User do
     feed_one = feed_repository.create(
       title: 'Blog 1',
       url: 'https://blog.com/feed.xml',
-      kind: FeedKind::TEXT
+      kind: FeedTheHungry::Enumerations::FeedKind::TEXT
     )
     feed_two = feed_repository.create(
       title: 'Blog 2',
       url: 'https://blogtwo.com/feed.xml',
-      kind: FeedKind::TEXT
+      kind: FeedTheHungry::Enumerations::FeedKind::TEXT
     )
 
     user_feed_repository.create(user_id: user.id, feed_id: feed_one.id)
@@ -48,7 +46,7 @@ RSpec.describe Types::User do
   end
 
   it 'return a user with their feeds' do
-    result = Schema.execute(query, variables: { id: user.id }).to_h
+    result = API::Schema.execute(query, variables: { id: user.id }).to_h
 
     expect(result['data']).to match(
       'user' => {
@@ -58,14 +56,14 @@ RSpec.describe Types::User do
                                     'edges' => [
                                       {
                                         'node' => {
-                                          'kind' => FeedKind::TEXT.upcase,
+                                          'kind' => FeedTheHungry::Enumerations::FeedKind::TEXT.upcase,
                                           'title' => 'Blog 1',
                                           'url' => 'https://blog.com/feed.xml'
                                         }
                                       },
                                       {
                                         'node' => {
-                                          'kind' => FeedKind::TEXT.upcase,
+                                          'kind' => FeedTheHungry::Enumerations::FeedKind::TEXT.upcase,
                                           'title' => 'Blog 2',
                                           'url' => 'https://blogtwo.com/feed.xml'
                                         }
