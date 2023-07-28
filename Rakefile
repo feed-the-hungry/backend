@@ -2,10 +2,7 @@
 
 require 'rake'
 require 'rom/sql/rake_task'
-
-task :environment do
-  require 'hanami/init'
-end
+require 'hanami/prepare'
 
 begin
   require 'rspec/core/rake_task'
@@ -16,10 +13,12 @@ begin
 rescue LoadError # rubocop:disable Lint/SuppressedException
 end
 
-Rake::Task['db:migrate'].clear
-
 namespace :db do
-  task setup: :environment do
-    ROM::SQL::RakeSupport.env = FeedTheHungry::Persistence.configuration
+  task :setup do
+    FeedTheHungry::App.prepare :persistence
+
+    config = FeedTheHungry::Container['persistence.config']
+
+    ROM::SQL::RakeSupport.env = ROM.container(config)
   end
 end
