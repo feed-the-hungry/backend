@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
+require 'sidekiq'
+
 module FeedTheHungry
   module Workers
     module Feeds
       class EntryImporterWorker
-        include Sidekiq::Worker
+        include ::Sidekiq::Worker
 
         sidekiq_options queue: :scheduler
 

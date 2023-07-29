@@ -2,7 +2,7 @@
 
 module FeedTheHungry
   module Entities
-    class UserFeed < ROM::Struct
+    class UserFeed < Base
     end
   end
 end

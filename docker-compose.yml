@@ -6,7 +6,7 @@ services:
       context: .
       args:
         BUNDLE_IS_PRD: 'false'
-    image: fth-backend:1.0.3
+    image: fth-backend:1.0.4
 
   backend: &backend
     <<: *app
@@ -16,7 +16,7 @@ services:
       - .:/app
       - bundle:/usr/local/bundle
     environment:
-      - RACK_ENV=${RACK_ENV:-development}
+      - HANAMI_ENV=${HANAMI_ENV:-development}
     command: >
         sh -c "bundle check || bundle install &&
                bundle exec puma -C config/puma.rb"

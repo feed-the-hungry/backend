@@ -1,32 +1,31 @@
 # frozen_string_literal: true
 
-require 'hanami/interactor'
+module FeedTheHungry
+  module Interactors
+    class AddEntry
+      include Interactors::Base
 
-require_relative 'interactor_helpers'
+      expose :entry
 
-class AddEntry
-  include Hanami::Interactor
-  include InteractorHelpers
+      def initialize(repository: FeedTheHungry::Repositories::EntryRepository.new)
+        @repository = repository
+      end
 
-  expose :entry
+      def call(attributes)
+        result = FeedTheHungry::Contracts::EntryContract.new.call(attributes)
 
-  def initialize(repository: FeedTheHungry::Repositories::EntryRepository.new)
-    @repository = repository
-  end
+        if result.success?
+          @entry = repository.create(attributes)
+        else
+          error_messages(result)
+        end
 
-  def call(attributes)
-    result = FeedTheHungry::Validators::EntryValidator.new(attributes).validate
+        self
+      end
 
-    if result.success?
-      @entry = repository.create(attributes)
-    else
-      error_messages(result)
+      private
 
-      fail!
+      attr_reader :repository
     end
   end
-
-  private
-
-  attr_reader :repository
 end

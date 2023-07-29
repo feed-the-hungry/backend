@@ -10,6 +10,8 @@ module FeedTheHungry
             has_many :feeds, through: :user_feeds
           end
         end
+
+        auto_struct true
       end
     end
   end

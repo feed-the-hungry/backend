@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Types::DateTime do
+RSpec.describe API::Types::DateTime do
   describe '.coerce_input' do
     it 'not passing a value' do
       expect(described_class.coerce_input(nil, nil)).to be_nil

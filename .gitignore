@@ -6,3 +6,4 @@ coverage
 spec/*.txt
 log
 vendor/
+.bundle
