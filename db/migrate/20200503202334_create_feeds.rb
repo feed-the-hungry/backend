@@ -1,14 +1,15 @@
 # frozen_string_literal: true
 
 ROM::SQL.migration do
-  change do
+  up do
     execute 'CREATE EXTENSION IF NOT EXISTS "uuid-ossp"'
 
     create_table :feeds do
-      primary_key(
+      column(
         :id,
         'uuid',
         null: false,
+        primary_key: true,
         default: Sequel.function(:uuid_generate_v4)
       )
 
@@ -19,5 +20,11 @@ ROM::SQL.migration do
 
       index :url, unique: true
     end
+  end
+
+  down do
+    drop_table :feeds
+
+    execute 'DROP EXTENSION IF EXISTS "uuid-ossp"'
   end
 end

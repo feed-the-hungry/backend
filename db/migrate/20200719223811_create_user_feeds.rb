@@ -3,10 +3,11 @@
 ROM::SQL.migration do
   change do
     create_table :user_feeds do
-      primary_key(
+      column(
         :id,
         'uuid',
         null: false,
+        primary_key: true,
         default: Sequel.function(:uuid_generate_v4)
       )
       foreign_key :user_id, :users, on_delete: :cascade, null: false, type: :uuid
