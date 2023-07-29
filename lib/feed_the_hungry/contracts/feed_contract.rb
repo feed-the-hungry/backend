@@ -14,13 +14,12 @@ module FeedTheHungry
       end
 
       rule :url do
-        if !FeedTheHungry::Validators::HttpUriValidator.valid?(value)
-          key.failure(:url?)
+        if FeedTheHungry::Validators::HttpUriValidator.valid?(value)
+          feed_validator = FeedValidator.new(value).call
+
+          key.failure(:feed_url?) unless feed_validator.valid?
         else
-          # FIXME: This FeedValidator isn't working correctly
-          # feed_validator = W3C::FeedValidator.new
-          # feed_validator.validate_url(value)
-          # feed_validator.valid?
+          key.failure(:url?)
         end
       end
 
