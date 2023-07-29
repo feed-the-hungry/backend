@@ -106,7 +106,7 @@ RSpec.describe API::Mutations::UpdateFeed, :db do
       end
     end
 
-    context 'when url is not a feed', skip: 'feed validator based on w3c is not working' do
+    context 'when url is not a feed' do
       let(:input) do
         {
           title: 'My feed',

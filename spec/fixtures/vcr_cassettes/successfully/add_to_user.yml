@@ -2,43 +2,75 @@
 http_interactions:
 - request:
     method: get
-    uri: http://validator.w3.org/feed/check.cgi?output=soap12&url=https://brunoarueira.com/feed.xml
+    uri: https://validator.w3.org/feed/check.cgi?output=soap12&url=https://brunoarueira.com/feed.xml
     body:
       encoding: US-ASCII
       string: ''
     headers:
+      User-Agent:
+      - Faraday v2.7.10
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      User-Agent:
-      - Ruby
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Mon, 20 Jul 2020 00:21:50 GMT
-      Server:
-      - Apache/2.4.38 (Debian)
-      Transfer-Encoding:
-      - chunked
+      - Sat, 29 Jul 2023 21:11:49 GMT
       Content-Type:
       - application/soap+xml; charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15552015; preload
+      Public-Key-Pins:
+      - pin-sha256="cN0QSpPIkuwpT6iP2YjEo1bEwGpH/yiUn6yhdy+HNto="; pin-sha256="WGJkyYjx1QMdMe0UqlyOKXtydPDVrk7sl2fV+nNm1r4=";
+        pin-sha256="LrKdTxZLRTvyHM4/atX2nquX9BeHRZMCxg3cf4rhc2I="; max-age=864000
+      X-Frame-Options:
+      - deny
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Request-Id:
+      - 7ee85b3f3be49ca0
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=nEVr75ser3XvMMZOT4AtBp57kU.OYwFbcho7UL6j7AM-1690665109-0-AZKSKrhQygo9aahx6JWGveS8jVQOPAOV0tLf1+92tdfSScVnwN4mo+WIVRPGVpyGycMsam4+lCjgTgJkBtV/bRc=;
+        path=/; expires=Sat, 29-Jul-23 21:41:49 GMT; domain=.w3.org; HttpOnly; Secure;
+        SameSite=None
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 7ee85b3f3be49ca0-GIG
+      Alt-Svc:
+      - h3=":443"; ma=86400
     body:
       encoding: UTF-8
       string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<env:Envelope xmlns:env=\"http://www.w3.org/2003/05/soap-envelope\">\n<env:Body>\n<m:feedvalidationresponse
         env:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\" xmlns:m=\"http://www.w3.org/2005/10/feed-validator\">\n
-        \     <m:uri>https://brunoarueira.com/feed.xml</m:uri> \n      <m:checkedby>https://validator.w3.org/feed/check.cgi</m:checkedby>\n
-        \     <m:date>2020-07-20T00:21:51.227608</m:date>\n      <m:validity>true</m:validity>\n
+        \     <m:uri>https://brunoarueira.com/feed.xml</m:uri> \n      <m:checkedby>http://validator.w3.org/check.cgi</m:checkedby>\n
+        \     <m:date>2023-07-29T21:11:49.232996</m:date>\n      <m:validity>true</m:validity>\n
         \ <m:errors>\n        <m:errorcount>0</m:errorcount>\n        <m:errorlist></m:errorlist>\n
-        \   </m:errors>\n    <m:warnings>\n        <m:warningcount>1</m:warningcount>\n\t<m:warninglist><warning>\n
-        \ <level>warning</level>\n  <type>MissingAtomSelfLink</type>\n  <line>30</line>\n
-        \ <column>173</column>\n  <text>Missing atom:link with rel=&quot;self&quot;</text>\n
-        \ <msgcount>1</msgcount>\n  <backupcolumn>173</backupcolumn>\n  <backupline>30</backupline>\n
-        \ <element>channel</element>\n</warning>\n</m:warninglist>\n    </m:warnings>\n
-        \   <m:informations>\n\t<m:infocount>0</m:infocount>\n\t<m:infolist></m:infolist>\n
+        \   </m:errors>\n    <m:warnings>\n        <m:warningcount>3</m:warningcount>\n\t<m:warninglist><warning>\n
+        \ <level>warning</level>\n  <type>ContainsRelRef</type>\n  <line>30</line>\n
+        \ <column>188</column>\n  <text>content:encoded should not contain relative
+        URL references</text>\n  <msgcount>12</msgcount>\n  <backupcolumn>188</backupcolumn>\n
+        \ <backupline>30</backupline>\n  <element>content:encoded</element>\n  <parent>item</parent>\n
+        \ <value>/blog/using-more-from-database-instead-of-sidekiq-workers</value>\n</warning>\n\n<warning>\n
+        \ <level>warning</level>\n  <type>NotHtml</type>\n  <line>31</line>\n  <column>0</column>\n
+        \ <text>Invalid HTML</text>\n  <msgcount>2</msgcount>\n  <backupcolumn>1221</backupcolumn>\n
+        \ <backupline>70</backupline>\n  <element>content:encoded</element>\n  <message>Invalid
+        HTML</message>\n  <parent>item</parent>\n  <value>Unexpected end tag (p).
+        Ignored.</value>\n</warning>\n\n<warning>\n  <level>warning</level>\n  <type>MissingAtomSelfLink</type>\n
+        \ <line>129</line>\n  <column>173</column>\n  <text>Missing atom:link with
+        rel=&quot;self&quot;</text>\n  <msgcount>1</msgcount>\n  <backupcolumn>173</backupcolumn>\n
+        \ <backupline>129</backupline>\n  <element>channel</element>\n</warning>\n</m:warninglist>\n
+        \   </m:warnings>\n    <m:informations>\n\t<m:infocount>0</m:infocount>\n\t<m:infolist></m:infolist>\n
         \   </m:informations>\n</m:feedvalidationresponse>\n</env:Body>\n</env:Envelope>\n\n"
-  recorded_at: Mon, 20 Jul 2020 00:21:52 GMT
-recorded_with: VCR 6.0.0
+  recorded_at: Sat, 29 Jul 2023 21:11:48 GMT
+recorded_with: VCR 6.2.0

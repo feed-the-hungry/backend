@@ -7,5 +7,6 @@ require 'hanami/boot'
 
 require_relative 'support/db'
 require_relative 'support/rspec'
+require_relative 'support/vcr'
 
 Hanami.prepare

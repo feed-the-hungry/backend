@@ -2,49 +2,72 @@
 http_interactions:
 - request:
     method: get
-    uri: http://validator.w3.org/feed/check.cgi?output=soap12&url=https://brunoarueira.com
+    uri: https://validator.w3.org/feed/check.cgi?output=soap12&url=https://brunoarueira.com
     body:
       encoding: US-ASCII
       string: ''
     headers:
+      User-Agent:
+      - Faraday v2.7.10
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      User-Agent:
-      - Ruby
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Sat, 18 Jul 2020 21:25:17 GMT
-      Server:
-      - Apache/2.4.38 (Debian)
-      Transfer-Encoding:
-      - chunked
+      - Sat, 29 Jul 2023 21:11:44 GMT
       Content-Type:
       - application/soap+xml; charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15552015; preload
+      Public-Key-Pins:
+      - pin-sha256="cN0QSpPIkuwpT6iP2YjEo1bEwGpH/yiUn6yhdy+HNto="; pin-sha256="WGJkyYjx1QMdMe0UqlyOKXtydPDVrk7sl2fV+nNm1r4=";
+        pin-sha256="LrKdTxZLRTvyHM4/atX2nquX9BeHRZMCxg3cf4rhc2I="; max-age=864000
+      X-Frame-Options:
+      - deny
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Request-Id:
+      - 7ee85b23aff29ca6
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=cIPlSrOefdLG3uOTzIPF_zpFWZwdDwKiyOKgDQZGo28-1690665104-0-ARhBVdPlfZ4CVNB8zNCkFGCDfb62quXcOV6r/88Vsk8TZg9g1pOoj1jOtlzl7a9lxJoXaiAup59dL2drAcOCCZA=;
+        path=/; expires=Sat, 29-Jul-23 21:41:44 GMT; domain=.w3.org; HttpOnly; Secure;
+        SameSite=None
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 7ee85b23aff29ca6-GIG
+      Alt-Svc:
+      - h3=":443"; ma=86400
     body:
       encoding: UTF-8
       string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<env:Envelope xmlns:env=\"http://www.w3.org/2003/05/soap-envelope\">\n<env:Body>\n<m:feedvalidationresponse
         env:encodingStyle=\"http://www.w3.org/2003/05/soap-encoding\" xmlns:m=\"http://www.w3.org/2005/10/feed-validator\">\n
-        \     <m:uri>https://brunoarueira.com</m:uri> \n      <m:checkedby>https://validator.w3.org/feed/check.cgi</m:checkedby>\n
-        \     <m:date>2020-07-18T21:25:17.825797</m:date>\n      <m:validity>false</m:validity>\n
+        \     <m:uri>https://brunoarueira.com</m:uri> \n      <m:checkedby>http://validator.w3.org/check.cgi</m:checkedby>\n
+        \     <m:date>2023-07-29T21:11:44.837638</m:date>\n      <m:validity>false</m:validity>\n
         \ <m:errors>\n        <m:errorcount>2</m:errorcount>\n        <m:errorlist><error>\n
         \ <level>error</level>\n  <type>UndefinedElement</type>\n  <line>1</line>\n
         \ <column>15</column>\n  <text>Undefined root element: html</text>\n  <msgcount>1</msgcount>\n
         \ <backupcolumn>15</backupcolumn>\n  <backupline>1</backupline>\n  <element>html</element>\n
         \ <parent>root</parent>\n</error>\n\n<error>\n  <level>error</level>\n  <type>SAXError</type>\n
-        \ <line>46</line>\n  <column>239</column>\n  <text>XML parsing error: &lt;unknown&gt;:46:239:
-        not well-formed (invalid token)</text>\n  <msgcount>1</msgcount>\n  <backupcolumn>0</backupcolumn>\n
-        \ <backupline>46</backupline>\n  <exception>&lt;unknown&gt;:46:239: not well-formed
+        \ <line>47</line>\n  <column>8341</column>\n  <text>XML parsing error: &lt;unknown&gt;:47:8341:
+        not well-formed (invalid token)</text>\n  <msgcount>1</msgcount>\n  <backupcolumn>8200</backupcolumn>\n
+        \ <backupline>47</backupline>\n  <exception>&lt;unknown&gt;:47:8341: not well-formed
         (invalid token)</exception>\n</error>\n</m:errorlist>\n    </m:errors>\n    <m:warnings>\n
         \       <m:warningcount>1</m:warningcount>\n\t<m:warninglist><warning>\n  <level>warning</level>\n
         \ <type>UnexpectedContentType</type>\n  <text>UnexpectedContentType should
         not be served with the &quot;text/html&quot; media type</text>\n  <contentType>text/html</contentType>\n</warning>\n</m:warninglist>\n
         \   </m:warnings>\n    <m:informations>\n\t<m:infocount>0</m:infocount>\n\t<m:infolist></m:infolist>\n
         \   </m:informations>\n</m:feedvalidationresponse>\n</env:Body>\n</env:Envelope>\n\n"
-  recorded_at: Sat, 18 Jul 2020 21:25:18 GMT
-recorded_with: VCR 6.0.0
+  recorded_at: Sat, 29 Jul 2023 21:11:44 GMT
+recorded_with: VCR 6.2.0

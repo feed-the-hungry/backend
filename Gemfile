@@ -2,12 +2,14 @@
 
 source 'https://rubygems.org'
 
-gem 'feedvalidator'
+gem 'faraday'
+gem 'faraday-follow_redirects'
 gem 'graphql', '2.0.24'
 gem 'hanami', '~> 2.0'
 gem 'hanami-controller', '~> 2.0'
 gem 'hanami-validations', '~> 2.0'
 gem 'i18n'
+gem 'nokogiri'
 gem 'pg'
 gem 'puma'
 gem 'rake'
