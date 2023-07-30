@@ -126,5 +126,31 @@ RSpec.describe API::Mutations::AddFeed, :db do
         expect(repository.all.count).to eq 0
       end
     end
+
+    context 'when kind is invalid' do
+      let(:input) do
+        {
+          title: 'My feed',
+          kind: 'FOO',
+          url: 'https://brunoarueira.com/feed.xml',
+          userId: user.id
+        }
+      end
+
+      it 'does not create a new feed and report errors' do
+        expect(repository.all.count).to eq 0
+
+        result = API::Schema.execute(query, variables: { input: }).to_h
+
+        expect(result['errors'][0]['extensions']['problems']).to eq(
+          [{
+            'path' => ['kind'],
+            'explanation' => 'Expected "FOO" to be one of: TEXT, AUDIO'
+          }]
+        )
+
+        expect(repository.all.count).to eq 0
+      end
+    end
   end
 end

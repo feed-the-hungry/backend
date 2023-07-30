@@ -18,14 +18,6 @@ module FeedTheHungry
           feed_validator = FeedValidator.new(value).call
 
           key.failure(:feed_url?) unless feed_validator.valid?
-        else
-          key.failure(:url?)
-        end
-      end
-
-      rule :kind do
-        unless FeedTheHungry::Enumerations::FeedKind.all.include?(value)
-          key.failure(:kind?, values: FeedTheHungry::Enumerations::FeedKind.all.join(', '))
         end
       end
     end
