@@ -141,7 +141,7 @@ GEM
     lefthook (1.4.8)
     mini_portile2 (2.8.4)
     nio4r (2.5.9)
-    nokogiri (1.15.3)
+    nokogiri (1.15.4)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     parallel (1.23.0)
