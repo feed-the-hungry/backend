@@ -35,7 +35,7 @@ end
 group :test do
   gem 'codecov', require: false
   gem 'database_cleaner-sequel', require: false
-  gem 'rom-factory', '~> 0.10', require: false
+  gem 'rom-factory', '~> 0.12', require: false
   gem 'rspec'
   gem 'vcr', require: false
   gem 'webmock', require: false

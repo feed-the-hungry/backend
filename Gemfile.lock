@@ -8,7 +8,7 @@ GEM
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
-    bigdecimal (3.1.5)
+    bigdecimal (3.1.6)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
     codecov (0.6.0)
@@ -87,7 +87,7 @@ GEM
     erubi (1.10.0)
     et-orbi (1.2.7)
       tzinfo
-    faker (2.23.0)
+    faker (3.2.3)
       i18n (>= 1.8.11, < 2)
     faraday (2.9.0)
       faraday-net_http (>= 2.0, < 3.2)
@@ -182,11 +182,11 @@ GEM
       dry-struct (~> 1.0)
       dry-types (~> 1.6)
       transproc (~> 1.0, >= 1.1.0)
-    rom-factory (0.11.0)
+    rom-factory (0.12.0)
       dry-configurable (~> 1.0)
       dry-core (~> 1.0)
       dry-struct (~> 1.6)
-      faker (>= 2.0, < 3.0)
+      faker (>= 2.0, < 4)
       rom-core (~> 5.3)
     rom-repository (5.3.0)
       dry-core (~> 1.0)
@@ -292,7 +292,7 @@ DEPENDENCIES
   puma
   rake
   rom (~> 5.3)
-  rom-factory (~> 0.10)
+  rom-factory (~> 0.12)
   rom-sql (~> 3.6)
   rspec
   rss
