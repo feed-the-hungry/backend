@@ -4,6 +4,7 @@ GEM
     addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.2)
+    base64 (0.2.0)
     better_errors (2.9.1)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
@@ -99,7 +100,8 @@ GEM
     fugit (1.8.1)
       et-orbi (~> 1, >= 1.2.7)
       raabro (~> 1.4)
-    graphql (2.2.9)
+    graphql (2.2.10)
+      base64
     hanami (2.0.3)
       bundler (>= 1.16, < 3)
       dry-configurable (~> 1.0, < 2)
@@ -280,7 +282,7 @@ DEPENDENCIES
   dotenv (~> 3.0)
   faraday
   faraday-follow_redirects
-  graphql (= 2.2.9)
+  graphql (= 2.2.10)
   hanami (~> 2.0)
   hanami-controller (~> 2.0)
   hanami-validations (~> 2.0)
