@@ -29,7 +29,7 @@ group :development do
 end
 
 group :test, :development do
-  gem 'dotenv', '~> 3.0'
+  gem 'dotenv', '~> 3.1'
 end
 
 group :test do
