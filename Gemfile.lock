@@ -137,7 +137,7 @@ GEM
       better_errors (~> 2.4)
       binding_of_caller (~> 0.8)
     hashdiff (1.1.0)
-    i18n (1.14.1)
+    i18n (1.14.4)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
     json (2.7.1)
