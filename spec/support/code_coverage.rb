@@ -9,7 +9,7 @@ SimpleCov.start do
 end
 
 if ENV['CI'] == 'true'
-  require 'codecov'
+  require 'simplecov-cobertura'
 
-  SimpleCov.formatter = SimpleCov::Formatter::Codecov
+  SimpleCov.formatter = SimpleCov::Formatter::CoberturaFormatter
 end
