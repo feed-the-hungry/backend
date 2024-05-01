@@ -12,8 +12,6 @@ GEM
     bigdecimal (3.1.6)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
-    codecov (0.6.0)
-      simplecov (>= 0.15, < 0.22)
     coderay (1.1.3)
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
@@ -261,6 +259,9 @@ GEM
       docile (~> 1.1)
       simplecov-html (~> 0.11)
       simplecov_json_formatter (~> 0.1)
+    simplecov-cobertura (2.1.0)
+      rexml
+      simplecov (~> 0.19)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.4)
     tilt (2.2.0)
@@ -280,7 +281,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  codecov
   database_cleaner-sequel
   dotenv (~> 3.1)
   faraday
@@ -307,6 +307,8 @@ DEPENDENCIES
   shotgun
   sidekiq
   sidekiq-scheduler
+  simplecov
+  simplecov-cobertura
   vcr
   webmock
 

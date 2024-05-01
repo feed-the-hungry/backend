@@ -50,3 +50,7 @@ jobs:
           export REDIS_URL=redis://localhost:6379
           bundle exec rake db:reset HANAMI_ENV=test
           bundle exec rake spec
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
