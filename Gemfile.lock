@@ -41,7 +41,7 @@ GEM
     dry-files (1.1.0)
     dry-inflector (1.0.0)
     dry-initializer (3.1.1)
-    dry-logger (1.0.3)
+    dry-logger (1.0.4)
     dry-logic (1.5.0)
       concurrent-ruby (~> 1.0)
       dry-core (~> 1.0, < 2)
@@ -99,7 +99,7 @@ GEM
       raabro (~> 1.4)
     graphql (2.3.3)
       base64
-    hanami (2.1.0)
+    hanami (2.1.1)
       bundler (>= 1.16, < 3)
       dry-configurable (~> 1.0, < 2)
       dry-core (~> 1.0, < 2)
