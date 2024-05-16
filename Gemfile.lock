@@ -163,7 +163,8 @@ GEM
     redis-client (0.22.1)
       connection_pool
     regexp_parser (2.9.1)
-    rexml (3.2.6)
+    rexml (3.2.8)
+      strscan (>= 3.0.9)
     rom (5.3.2)
       rom-changeset (~> 5.3, >= 5.3.0)
       rom-core (~> 5.3, >= 5.3.2)
@@ -264,6 +265,7 @@ GEM
       simplecov (~> 0.19)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.4)
+    strscan (3.1.0)
     tilt (2.2.0)
     transproc (1.1.1)
     tzinfo (2.0.6)
