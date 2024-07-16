@@ -98,7 +98,7 @@ GEM
     fugit (1.11.0)
       et-orbi (~> 1, >= 1.2.11)
       raabro (~> 1.4)
-    graphql (2.3.5)
+    graphql (2.3.9)
       base64
     hanami (2.1.1)
       bundler (>= 1.16, < 3)
@@ -281,7 +281,7 @@ DEPENDENCIES
   dotenv (~> 3.1)
   faraday
   faraday-follow_redirects
-  graphql (= 2.3.5)
+  graphql (= 2.3.9)
   hanami (~> 2.1)
   hanami-controller (~> 2.1)
   hanami-validations (~> 2.1)
