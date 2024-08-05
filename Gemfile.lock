@@ -165,7 +165,7 @@ GEM
     redis-client (0.22.2)
       connection_pool
     regexp_parser (2.9.2)
-    rexml (3.3.2)
+    rexml (3.3.4)
       strscan
     rom (5.3.2)
       rom-changeset (~> 5.3, >= 5.3.0)
@@ -213,7 +213,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
     rspec-support (3.13.0)
-    rss (0.3.0)
+    rss (0.3.1)
       rexml
     rubocop (1.65.0)
       json (~> 2.3)
