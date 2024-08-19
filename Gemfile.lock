@@ -165,7 +165,7 @@ GEM
     redis-client (0.22.2)
       connection_pool
     regexp_parser (2.9.2)
-    rexml (3.3.2)
+    rexml (3.3.3)
       strscan
     rom (5.3.2)
       rom-changeset (~> 5.3, >= 5.3.0)
