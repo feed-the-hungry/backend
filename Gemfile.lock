@@ -1,8 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.8.6)
-      public_suffix (>= 2.0.2, < 6.0)
+    addressable (2.8.7)
+      public_suffix (>= 2.0.2, < 7.0)
     ast (2.4.2)
     base64 (0.2.0)
     better_errors (2.10.1)
@@ -137,7 +137,7 @@ GEM
     hanami-webconsole (2.1.0)
       better_errors (~> 2.10, >= 2.10.1)
       binding_of_caller (~> 1.0)
-    hashdiff (1.1.0)
+    hashdiff (1.1.1)
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
@@ -157,7 +157,7 @@ GEM
       ast (~> 2.4.1)
       racc
     pg (1.5.8)
-    public_suffix (5.0.5)
+    public_suffix (6.0.1)
     puma (6.4.3)
       nio4r (~> 2.0)
     raabro (1.4.0)
@@ -168,8 +168,7 @@ GEM
     redis-client (0.22.2)
       connection_pool
     regexp_parser (2.9.2)
-    rexml (3.3.6)
-      strscan
+    rexml (3.3.8)
     rom (5.3.2)
       rom-changeset (~> 5.3, >= 5.3.0)
       rom-core (~> 5.3, >= 5.3.2)
@@ -261,7 +260,6 @@ GEM
       simplecov (~> 0.19)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.4)
-    strscan (3.1.0)
     tilt (2.4.0)
     transproc (1.1.1)
     tzinfo (2.0.6)
@@ -270,7 +268,7 @@ GEM
     uri (0.13.1)
     vcr (6.3.1)
       base64
-    webmock (3.23.1)
+    webmock (3.24.0)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
