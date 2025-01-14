@@ -198,10 +198,10 @@ GEM
       dry-core (~> 1.0)
       dry-initializer (~> 3.2)
       rom-core (~> 5.4)
-    rom-sql (3.6.5)
-      dry-core (~> 1.0)
-      dry-types (~> 1.0)
-      rom (~> 5.2, >= 5.2.1)
+    rom-sql (3.7.0)
+      dry-core (~> 1.1)
+      dry-types (~> 1.8)
+      rom (~> 5.4)
       sequel (>= 4.49)
     rouge (4.5.1)
     rspec (3.13.0)
@@ -239,7 +239,7 @@ GEM
     ruby-progressbar (1.13.0)
     rufus-scheduler (3.9.1)
       fugit (~> 1.1, >= 1.1.6)
-    sequel (5.87.0)
+    sequel (5.88.0)
       bigdecimal
     shotgun (0.9.2)
       rack (>= 1.0)
@@ -298,7 +298,7 @@ DEPENDENCIES
   rake
   rom (~> 5.4)
   rom-factory (~> 0.12)
-  rom-sql (~> 3.6)
+  rom-sql (~> 3.7)
   rspec
   rss
   rubocop
