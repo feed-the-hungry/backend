@@ -72,7 +72,7 @@ GEM
       dry-inflector (~> 1.0)
     dry-transformer (1.0.1)
       zeitwerk (~> 2.6)
-    dry-types (1.8.0)
+    dry-types (1.8.1)
       bigdecimal (~> 3.0)
       concurrent-ruby (~> 1.0)
       dry-core (~> 1.0)
@@ -88,7 +88,7 @@ GEM
     erubi (1.13.0)
     et-orbi (1.2.11)
       tzinfo
-    faker (3.2.3)
+    faker (3.5.1)
       i18n (>= 1.8.11, < 2)
     faraday (2.12.2)
       faraday-net_http (>= 2.0, < 3.5)
@@ -188,12 +188,12 @@ GEM
       dry-struct (~> 1.0)
       dry-types (~> 1.6)
       transproc (~> 1.1)
-    rom-factory (0.12.0)
-      dry-configurable (~> 1.0)
-      dry-core (~> 1.0)
-      dry-struct (~> 1.6)
+    rom-factory (0.13.0)
+      dry-configurable (~> 1.3)
+      dry-core (~> 1.1)
+      dry-struct (~> 1.7)
       faker (>= 2.0, < 4)
-      rom-core (~> 5.3)
+      rom-core (~> 5.4)
     rom-repository (5.4.2)
       dry-core (~> 1.0)
       dry-initializer (~> 3.2)
@@ -298,7 +298,7 @@ DEPENDENCIES
   puma
   rake
   rom (~> 5.4)
-  rom-factory (~> 0.12)
+  rom-factory (~> 0.13)
   rom-sql (~> 3.7)
   rspec
   rss
