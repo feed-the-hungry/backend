@@ -34,7 +34,7 @@ end
 
 group :test do
   gem 'database_cleaner-sequel', require: false
-  gem 'rom-factory', '~> 0.12', require: false
+  gem 'rom-factory', '~> 0.13', require: false
   gem 'rspec'
   gem 'simplecov'
   gem 'simplecov-cobertura'
