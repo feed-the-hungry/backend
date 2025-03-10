@@ -102,7 +102,7 @@ GEM
     fugit (1.11.1)
       et-orbi (~> 1, >= 1.2.11)
       raabro (~> 1.4)
-    graphql (2.4.10)
+    graphql (2.4.11)
       base64
       fiber-storage
       logger
@@ -291,7 +291,7 @@ DEPENDENCIES
   dotenv (~> 3.1)
   faraday
   faraday-follow_redirects
-  graphql (= 2.4.10)
+  graphql (= 2.4.11)
   hanami (~> 2.2)
   hanami-controller (~> 2.2)
   hanami-validations (~> 2.2)
