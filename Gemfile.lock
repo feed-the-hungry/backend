@@ -144,7 +144,7 @@ GEM
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
-    json (2.10.2)
+    json (2.11.3)
     language_server-protocol (3.17.0.4)
     lefthook (1.11.11)
     lint_roller (1.1.0)
@@ -222,7 +222,7 @@ GEM
     rspec-support (3.13.0)
     rss (0.3.1)
       rexml
-    rubocop (1.75.2)
+    rubocop (1.75.4)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
