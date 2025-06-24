@@ -29,3 +29,8 @@ Style/EmptyElse:
   Enabled: true
   Exclude:
     - 'lib/feed_the_hungry/contracts/feed_contract.rb'
+
+Naming/PredicateMethod:
+  Enabled: true
+  Exclude:
+    - 'slices/api/mutations/remove_user.rb'
