@@ -16,7 +16,7 @@ class FeedValidator
     begin
       response = fetch(@url)
 
-      @valid = parse_response(response.body) if response.success?
+      @valid = valid_feed?(response.body) if response.success?
     rescue StandardError
       @valid = false
     end
@@ -42,7 +42,7 @@ class FeedValidator
     connection.get('/feed/check.cgi', { url:, output: 'soap12' })
   end
 
-  def parse_response(xml_content)
+  def valid_feed?(xml_content)
     document = Nokogiri.XML(xml_content)
 
     document.remove_namespaces!
