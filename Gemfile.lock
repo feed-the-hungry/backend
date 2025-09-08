@@ -146,7 +146,7 @@ GEM
     ice_nine (0.11.2)
     json (2.13.2)
     language_server-protocol (3.17.0.5)
-    lefthook (1.12.3)
+    lefthook (1.12.4)
     lint_roller (1.1.0)
     logger (1.7.0)
     mini_portile2 (2.8.9)
