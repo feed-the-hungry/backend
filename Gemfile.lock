@@ -24,7 +24,7 @@ GEM
     debug_inspector (1.2.0)
     diff-lcs (1.6.2)
     docile (1.4.1)
-    dotenv (3.1.8)
+    dotenv (3.2.0)
     dry-auto_inject (1.0.1)
       dry-core (~> 1.0)
       zeitwerk (~> 2.6)
@@ -288,7 +288,7 @@ PLATFORMS
 
 DEPENDENCIES
   database_cleaner-sequel
-  dotenv (~> 3.1)
+  dotenv (~> 3.2)
   faraday
   faraday-follow_redirects
   graphql (= 2.5.14)
