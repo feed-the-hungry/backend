@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 gem 'faraday'
 gem 'faraday-follow_redirects'
-gem 'graphql', '2.5.14'
+gem 'graphql', '2.5.16'
 gem 'hanami', '~> 2.2'
 gem 'hanami-controller', '~> 2.2'
 gem 'hanami-validations', '~> 2.2'
