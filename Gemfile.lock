@@ -160,7 +160,7 @@ GEM
     parser (3.3.10.0)
       ast (~> 2.4.1)
       racc
-    pg (1.6.2)
+    pg (1.6.3)
     prism (1.7.0)
     public_suffix (6.0.2)
     puma (7.1.0)
